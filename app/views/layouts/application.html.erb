@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Stream Congress</title>
+    <%= stylesheet_link_tag :all %>
+    <%= csrf_meta_tag %>
+  </head>
+  <body>
+    <div id="container">
+
+      <div id="header">
+
+        <h1>Stream Congress</h1>
+
+        <div id="aside">
+          <ul id="navigation">
+            <li><a href="#">Home</a> |</li>
+            <li><a href="#">About</a> |</li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+          <ul id="account">
+            <li><a href="#">Sign In</a></li>
+          </ul>
+
+        </div><!-- aside -->
+        <div class="clear"></div>
+
+      </div><!-- header -->
+
+      <div id="content">
+        <h2 id="page_title">Happening Now...</h2>
+        <div id="stream">
+
+          <p class="activity">
+            <img src="http://assets.sunlightfoundation.com/moc/100x125/W000803.jpg" width="50px" align="left" />
+            <span class="headline">Sen. Jim Webb was mentioned in Wall Street Journal Blogs:</span><br />
+            <span class="content"><strong>Va. Lawmakers Urge Obama to Stop Military Closing</strong> - Lawmakers are stepping up a campaign to force the Pentagon to rethink plans to close a Virginia-based military command...</span>
+            <span class="byline"><a href="#">0 Comments</a> | 5:31 pm Sep 9 | <a href="#">View Original</a> <img src="http://wsj.com/favicon.ico" width="16px"></span>
+          </p>
+
+          <p class="activity">
+            <img src="http://assets.sunlightfoundation.com/moc/100x125/W000805.jpg" width="50px" align="left" />
+            <span class="headline">Sen. Mark Warner tweeted:</span><br />
+            <span class="content">Great visits, productive conversations this wk in Winchester, Harrisonburg, Staunton VA. Blogs,pics @ www.warner.senate.gov -Staff</span>
+            <span class="byline"><a href="#">0 Comments</a> | 10:26 pm Sep 8 | <a href="#">View Original</a> <img src="http://twitter.com/favicon.ico" width="16px"></span>
+          </p>
+
+          <p class="activity">
+            <img src="http://assets.sunlightfoundation.com/moc/100x125/C001078.jpg" width="50px" align="left" />
+            <span class="headline">Rep. Gerry Connolly posted a video:</span><br />
+            <object width="300" height="250"><param name="movie" value="http://www.youtube.com/v/8EqI7qOrKWE?fs=1&amp;hl=en_US&amp;rel=0&amp;hd=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/8EqI7qOrKWE?fs=1&amp;hl=en_US&amp;rel=0&amp;hd=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="300" height="250"></embed></object><br />
+            <span class="content">Connolly calls for hearings to determine rationale behind Secretary Gates defense recommendations</span>
+            <span class="byline"><a href="#">0 Comments</a> | 3:10 pm Aug 11 | <a href="#">View Original</a> <img src="http://www.youtube.com/favicon.ico" width="16px"></span>
+          </p>
+
+        </div>
+      </div><!-- content -->
+
+      <div id="sidebar">
+        <h3>Currently Following</h3>
+        <ul>
+          <li>U.S. Senate</li>
+          <li>U.S. House of Representatives</li>
+          <li>Rep. Gerry Connolly (D-VA)</li>
+          <li>Sen. Mark Warner (D-VA)</li>
+          <li>Sen. Jim Webb (D-VA)</li>
+        </ul>
+        <p>Your location has been detected as Fairfax, VA.</p>
+        <h3>Sign In</h3>
+        <img src="http://google.com/favicon.ico" />&nbsp;<a href="#">via Google</a>
+        <p>By signing in, you'll be able to leave comments and customize your stream.</p>
+      </div>
+
+      <div id="footer">
+        <div id="footer_description">
+          <h4>A project of the Sunlight Foundation.</h4>
+          <p>Founded in 2006, the Sunlight Foundation uses cutting-edge technology and ideas to make government transparent and accountable. Through its projects and grant-making, Sunlight serves as a catalyst to create greater political transparency and to foster more openness and accountability in government. Visit <a href="http://sunlightfoundation.com">SunlightFoundation.com</a> to learn more.</p>
+        </div>
+      </div><!-- footer -->
+    </div>
+    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'></script>
+    <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/jquery-ui.min.js'></script>
+    <%= javascript_include_tag :defaults %>
+  </body>
+</html>
