@@ -6,3 +6,12 @@ gem "fastercsv"
 gem "mongoid", "2.0.0.beta.17"
 gem "bson_ext", "1.0.4"
 gem "twitter"
+
+group :test, :development do
+  gem "rspec-rails", ">= 2.0.0.beta.22"
+  gem "steak", ">= 1.0.0.beta.2"
+  gem "autotest"
+  gem "capybara"
+  gem "rr"
+  gem "mongoid-rspec"
+end
