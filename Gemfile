@@ -14,4 +14,5 @@ group :test, :development do
   gem "capybara"
   gem "rr"
   gem "mongoid-rspec"
+  gem "database_cleaner", ">= 0.6.0.rc.3"
 end
