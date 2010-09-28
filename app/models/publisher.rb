@@ -1,7 +1,9 @@
 class Publisher
 
   include Mongoid::Document
-
+  include Mongoid::Timestamps
+  include Mongoid::Paranoia
+  
   field :name
   field :publisher_type
   field :description
@@ -16,5 +18,8 @@ class Publisher
   
   validates_uniqueness_of :name
 
-  validates_inclusion_of :publisher_type, :in => ["senator", "representative", "chamber"]
+  validates_inclusion_of :publisher_type, :in => ["senator", "representative", "chamber", "app"]
+
+  referenced_in :activity
+  
 end

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Publisher do
-  
+    
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:publisher_type) }
   
@@ -9,5 +9,11 @@ describe Publisher do
 
   it { should validate_inclusion_of(:publisher_type).to_allow("senator",
                                                               "representative",
-                                                              "chamber") }
+                                                              "chamber",
+                                                              "app") }
+
+  it { should have_fields(:bioguide_id, :govtrack_id, :twitter_id, :youtube_id)}
+
+  it { should be_referenced_in(:activity) }
+
 end
