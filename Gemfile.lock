@@ -30,7 +30,7 @@ GEM
     activesupport (3.0.0)
     arel (1.0.1)
       activesupport (~> 3.0.0)
-    autotest (4.3.2)
+    autotest (4.4.0)
     bson (1.0.4)
     bson_ext (1.0.4)
     builder (2.1.2)
@@ -62,7 +62,7 @@ GEM
     mime-types (1.16)
     mongo (1.0.7)
       bson (>= 1.0.4)
-    mongoid (2.0.0.beta.17)
+    mongoid (2.0.0.beta.18)
       activemodel (~> 3.0.0)
       bson (= 1.0.4)
       mongo (= 1.0.7)
@@ -135,7 +135,7 @@ DEPENDENCIES
   capybara
   database_cleaner (>= 0.6.0.rc.3)
   fastercsv
-  mongoid (= 2.0.0.beta.17)
+  mongoid (= 2.0.0.beta.18)
   mongoid-rspec
   rails (= 3.0.0)
   rr
