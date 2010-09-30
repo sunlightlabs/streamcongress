@@ -1,0 +1,16 @@
+senate_floor:
+  name: Senate Floor
+  publisher_type: group
+
+house_floor:
+  name: House Floor
+  publisher_type: group
+
+senate_tweets:
+  name: Senate Tweets
+  publisher_type: group
+
+house_tweets:
+  name: House Tweets
+  publisher_type: group
+

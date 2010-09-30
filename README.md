@@ -18,9 +18,9 @@ Stream Congress is a Rails 3 app. It expects MongoDB, Ruby, RubyGems, and the Ru
 
 ## Rake Tasks
 
-The Rails app is the boring part. The slightly more interesting part is the set of Rake tasks that populate the database. The master task is meant to be run once every minute.
+The Rails app is the boring part. The slightly more interesting part is the set of Rake tasks that populate the database. The master task `fetch:all` is meant to be run once every minute.
 
-    $ rake fetch:master
+    $ rake fetch:all
     $ rake fetch:floor_votes
     $ rake fetch:floor_updates
     $ rake fetch:committee_meetings
@@ -29,3 +29,5 @@ The Rails app is the boring part. The slightly more interesting part is the set 
     $ rake fetch:news
 
 The YouTube videos and news mentions cycle through all members of Congress once per hour. They use the database to keep track of who's been already processed for the hour.
+
+To initially populate the database with Publishers, run `rake load:legislators` and `rake load:other_publishers`.

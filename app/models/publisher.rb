@@ -2,12 +2,13 @@ class Publisher
 
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Mongoid::Paranoia
   
   field :name
   field :publisher_type
   field :description
   
+  field :title
+  field :party
   field :bioguide_id
   field :govtrack_id
   field :twitter_id
@@ -16,9 +17,7 @@ class Publisher
   validates_presence_of :name
   validates_presence_of :publisher_type
   
-  validates_uniqueness_of :name
-
-  validates_inclusion_of :publisher_type, :in => ["senator", "representative", "chamber", "app"]
+  validates_inclusion_of :publisher_type, :in => ["member", "group", "app"]
 
   referenced_in :activity
   
