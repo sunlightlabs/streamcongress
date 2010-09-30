@@ -1,85 +1,173 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Stream Congress</title>
-    <%= stylesheet_link_tag :all %>
-    <%= csrf_meta_tag %>
-  </head>
-  <body>
-    <div id="container">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <%= csrf_meta_tag %>
+  <meta name="description" content="" />
+  <title>Stream Congress</title>
+  <link rel="stylesheet" href="/stylesheets/main.css" type="text/css" media="screen" />
+  <!--[if IE 6]><link rel="stylesheet" href="buggy.css" type="text/css" media="screen" /><![endif]-->
+  <!--[if IE 7]><link rel="stylesheet" href="buggy7.css" type="text/css" media="screen" /><![endif]-->
+</head>
 
-      <div id="header">
-
-        <h1>Stream Congress</h1>
-
-        <div id="aside">
-          <ul id="navigation">
-            <li><a href="#">Home</a> |</li>
-            <li><a href="#">About</a> |</li>
-            <li><a href="#">Contact</a></li>
-          </ul>
-          <ul id="account">
-            <li><a href="#">Sign In</a></li>
-          </ul>
-
-        </div><!-- aside -->
-        <div class="clear"></div>
-
-      </div><!-- header -->
-
-      <div id="content">
-        <h2 id="page_title">Happening Now...</h2>
-        <div id="stream">
-
-          <p class="activity">
-            <img src="http://assets.sunlightfoundation.com/moc/100x125/W000803.jpg" width="50px" align="left" />
-            <span class="headline">Sen. Jim Webb was mentioned in Wall Street Journal Blogs:</span><br />
-            <span class="content"><strong>Va. Lawmakers Urge Obama to Stop Military Closing</strong> - Lawmakers are stepping up a campaign to force the Pentagon to rethink plans to close a Virginia-based military command...</span>
-            <span class="byline"><a href="#">0 Comments</a> | 5:31 pm Sep 9 | <a href="#">View Original</a> <img src="http://wsj.com/favicon.ico" width="16px"></span>
-          </p>
-
-          <p class="activity">
-            <img src="http://assets.sunlightfoundation.com/moc/100x125/W000805.jpg" width="50px" align="left" />
-            <span class="headline">Sen. Mark Warner tweeted:</span><br />
-            <span class="content">Great visits, productive conversations this wk in Winchester, Harrisonburg, Staunton VA. Blogs,pics @ www.warner.senate.gov -Staff</span>
-            <span class="byline"><a href="#">0 Comments</a> | 10:26 pm Sep 8 | <a href="#">View Original</a> <img src="http://twitter.com/favicon.ico" width="16px"></span>
-          </p>
-
-          <p class="activity">
-            <img src="http://assets.sunlightfoundation.com/moc/100x125/C001078.jpg" width="50px" align="left" />
-            <span class="headline">Rep. Gerry Connolly posted a video:</span><br />
-            <object width="300" height="250"><param name="movie" value="http://www.youtube.com/v/8EqI7qOrKWE?fs=1&amp;hl=en_US&amp;rel=0&amp;hd=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/8EqI7qOrKWE?fs=1&amp;hl=en_US&amp;rel=0&amp;hd=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="300" height="250"></embed></object><br />
-            <span class="content">Connolly calls for hearings to determine rationale behind Secretary Gates defense recommendations</span>
-            <span class="byline"><a href="#">0 Comments</a> | 3:10 pm Aug 11 | <a href="#">View Original</a> <img src="http://www.youtube.com/favicon.ico" width="16px"></span>
-          </p>
-
-        </div>
-      </div><!-- content -->
-
-      <div id="sidebar">
-        <h3>Currently Following</h3>
+<body class="home">
+  <div id="pageMain">
+    <header>
+      <h1><a href="/">Steam Congress</a></h1>
+      <div id="headerNav">
         <ul>
-          <li>U.S. Senate</li>
-          <li>U.S. House of Representatives</li>
-          <li>Rep. Gerry Connolly (D-VA)</li>
-          <li>Sen. Mark Warner (D-VA)</li>
-          <li>Sen. Jim Webb (D-VA)</li>
+          <li><a href="#">Sign In</a></li>
+          <li class="last"><a href="#">About</a></li>
         </ul>
-        <p>Your location has been detected as Fairfax, VA.</p>
-        <h3>Sign In</h3>
-        <img src="http://google.com/favicon.ico" />&nbsp;<a href="#">via Google</a>
-        <p>By signing in, you'll be able to leave comments and customize your stream.</p>
+        <div class="clear"></div>
       </div>
-
-      <div id="footer">
-        <div id="footer_description">
-          <h4>A project of the Sunlight Foundation.</h4>
-          <p>Founded in 2006, the Sunlight Foundation uses cutting-edge technology and ideas to make government transparent and accountable. Through its projects and grant-making, Sunlight serves as a catalyst to create greater political transparency and to foster more openness and accountability in government. Visit <a href="http://sunlightfoundation.com">SunlightFoundation.com</a> to learn more.</p>
+    </header>
+    <div id="mainContent">
+      <div id="ltColumn">
+        <div class="module">
+          <h3 class="withTip">Currently Following</h3>
+          <span class="tip">Our computers tell us that you live in Fairfax, VA. Is this not right? <a href="#">Change your state now.</a></span>
+          <ul id="following">
+            <li>
+              <a href="#">U.S. Senate</a>
+              <a class="delete" href="#">Delete</a>
+              <div class="clear"></div>
+            </li>
+            <li>
+              <a href="#">U.S. House of Representatives</a>
+              <a class="delete" href="#">Delete</a>
+              <div class="clear"></div>
+            </li>
+            <li>
+              <a href="#">Sen. Gerry Connolly (D-VA)</a>
+              <a class="delete" href="#">Delete</a>
+              <div class="clear"></div>
+            </li>
+            <li>
+              <a href="#">Rep. Mark Warner (D-VA)</a>
+              <a class="delete" href="#">Delete</a>
+              <div class="clear"></div>
+            </li>
+            <li>
+              <a href="#">Sen. Jim Webb (D-VA)</a>
+              <a class="delete" href="#">Delete</a>
+              <div class="clear"></div>
+            </li>
+          </ul>
         </div>
-      </div><!-- footer -->
+        <div class="module">
+          <h3>Add Lawmakers</h3>
+          <h4>Popular Groups</h4>
+          <form action="#">
+            <div class="scroll">
+              <ul>
+                <li>
+                  <label><input class="checkbox" type="checkbox" name="word" />Senate Floor Updates</label>
+                </li>
+                <li>
+                  <label><input class="checkbox" type="checkbox" name="word" />House Floor Updates</label>
+                </li>
+                <li>
+                  <label><input class="checkbox" type="checkbox" name="word" />Senate Tweets</label>
+                </li>
+                <li>
+                  <label><input class="checkbox" type="checkbox" name="word" />House Tweets</label>
+                </li>
+              </ul>
+            </div>
+            <button class="addBtn" type="submit">
+              <span>Add</span>
+            </button>
+          </form>
+          <h3>Type in the name of another lawmaker you'd like to follow</h3>
+          <form action="#">
+            <input id="id_name" type="text" name="name"/>
+            <button class="addBtn" type="submit">
+              <span>Add</span>
+            </button>
+          </form>
+        </div>
+      </div>
+      <div id="rtColumn">
+        <div id="rtColumn_content">
+          <h2 id="happeningTitle">Happening Now...</h2>
+          <article>
+            <img src="images/pic1.jpg" />
+            <div class="articleContent">
+              <a class="date" href="#">9.9.10</a>
+              <h3>Sen. Jim Webb was mentioned in Wall Street Journal Blogs: VA Lawmakers Urge Obama to Stop Military Closing –</h3>
+              <p>Lawmakers are stepping up a campaign to force the Pentagon to rethink plans to close a Virginia-based military command...</p>
+              <ul>
+                <li><a href="#">0 comments</a></li>
+                <li><a href="#">View Original</a></li>
+              </ul>
+              <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+          </article>
+          <article>
+            <img src="images/pic1.jpg" />
+            <div class="articleContent">
+              <a class="date" href="#">9.9.10</a>
+              <h3>Sen. Jim Webb was mentioned in Wall Street Journal Blogs: VA Lawmakers Urge Obama to Stop Military Closing –</h3>
+              <p>Lawmakers are stepping up a campaign to force the Pentagon to rethink plans to close a Virginia-based military command...</p>
+              <ul>
+                <li><a href="#">0 comments</a></li>
+                <li><a href="#">View Original</a></li>
+              </ul>
+              <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+          </article>
+          <article>
+            <img src="images/pic1.jpg" />
+            <div class="articleContent">
+              <a class="date" href="#">9.9.10</a>
+              <h3>Sen. Jim Webb was mentioned in Wall Street Journal Blogs: VA Lawmakers Urge Obama to Stop Military Closing –</h3>
+              <p>Lawmakers are stepping up a campaign to force the Pentagon to rethink plans to close a Virginia-based military command...</p>
+              <ul>
+                <li><a href="#">0 comments</a></li>
+                <li><a href="#">View Original</a></li>
+              </ul>
+              <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+          </article>
+        </div>
+      </div>
+      <div class="clear"></div>
     </div>
-    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'></script>
-    <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/jquery-ui.min.js'></script>
-    <%= javascript_include_tag :defaults %>
-  </body>
+    <div id="footerWrapper">
+      <footer>
+        <div id="footerNav">
+          <ul>
+            <li><a href="#">About</a></li>
+            <li class="last"><a href="#">Contact</a></li>
+          </ul>
+          <div class="clear"></div>
+        </div>
+        <div id="disclaimer">
+          <a class="linkReplacement" id="sf" href="http://www.sunlightfoundation.com">Sunlight Foundation</a>
+          <p>Founded in 2006, the Sunlight Foundation is a non-partisan non-profit that uses cutting-edge technology and ideas to make government transparent and accountable. Visit <a href="http://www.sunlightfoundation.com">SunlightFoundation.com</a> to learn more.</p>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1265484-67']);
+    _gaq.push(['_setDomainName', 'none']);
+    _gaq.push(['_setAllowLinker', true]);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+  <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'></script>
+  <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/jquery-ui.min.js'></script>
+  <%= javascript_include_tag :defaults %>
+</body>
 </html>

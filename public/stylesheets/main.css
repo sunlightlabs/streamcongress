@@ -1,0 +1,116 @@
+/*
+ * YUI Resect CSS version: 2.2.2
+ * Copyright (c) 2007, Yahoo! Inc. All rights reserved.
+ * Licensed under the BSD License: http://developer.yahoo.net/yui/license.txt
+ */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,optgroup,button,p,blockquote,th,td{margin:0;padding:0;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}table{border-collapse:collapse;border-spacing:0;}caption,th{text-align:left;}ol,ul{list-style:none;}fieldset,img{border:0;}input,textarea,select,optgroup,option,button{font-family:inherit;font-size:100%;}button,input {width: auto;overflow: visible;}optgroup,address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym {border:0;}
+dl li{list-style: none;}
+
+a:link, a:visited, a:active { outline: none; color: #BEBBB8; }
+a:hover { outline: none; color: #d6d2ce; }
+
+#rtColumn li a:link, #rtColumn li a:visited, #rtColumn li a:active { outline: none; color: #d2b702; }
+#rtColumn li a:hover { outline: none; color: #fdec7b; }
+
+#rtColumn a:link, #rtColumn a:visited, #rtColumn a:active { outline: none; color: #d2b702; }
+#rtColumn a:hover { outline: none; color: #fdec7b; }
+
+body{
+  color: #5d5654;
+  background: #170905 url(/images/bg_wrapper.jpg) top center repeat-x;
+  font-size: 80%;
+    line-height: 20px;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+.clear { clear: both;}
+p { margin-bottom: 1em;}
+.tip, .commentMetaData { color: #9f9b97; font-family: Georgia, "Times New Roman", Times, serif; font-style: oblique; font-size: 95%; line-height: 18px; margin-bottom: 30px; display: block;}
+.commentMetaData { margin-bottom: 10px;}
+
+#pageMain { background: url(/images/bg_header.jpg) top center no-repeat; display: block; height: 380px;}
+header, #mainContent, footer { width: 940px; margin: 0 auto; display: block; padding: 0 10px;}
+
+header { height: 205px; margin-bottom: 60px;}
+#headerNav li { float: left;}
+
+h1 { width: 217px; height: 68px; padding-top: 40px; margin-bottom: 50px;}
+h1 a { display: block; text-indent: -9999em; width: 217px; height: 68px; background: url(/images/logo.png) top left no-repeat;}
+
+#ltColumn { float: left; width: 290px; margin-right: 29px;}
+#rtColumn { float: left; width: 570px; background-color: #fafdf6; padding: 0 25px 0 26px; padding-bottom: 80px;}
+#rtColumn_content { margin-top: -45px;}
+
+h2 { font-family: Georgia, "Times New Roman", Times, serif; font-size: 190%; color: #fdfcfb; margin-bottom: 20px; line-height: 26px;}
+h2.withTip { margin-bottom: 15px;}
+article h2 { margin-bottom: 10px;}
+
+#rtColumn h2 { color: #2c2624;}
+#ltColumn form { padding-bottom: 40px;}
+
+h3 { font-family: Georgia, "Times New Roman", Times, serif; font-size: 160%; color: #fdfcfb; margin-bottom: 20px; line-height: 26px;}
+#rtColumn h3 { font-family: Georgia, "Times New Roman", Times, serif; font-size: 140%; color: #2C2624; line-height: 24px; margin-bottom: 10px;}
+#happeningTitle { font-size: 100%; margin-left: 120px; position: absolute; top: 88px;}
+h4 { color: #e0dcd9; font-size: 130%; margin-bottom: 15px;}
+#rtColumn h4 { color: #5D5654;}
+#commentTitle { margin-top: 40px; }
+#commentTitle, #comment h4 { margin-left: 82px;}
+
+img { padding: 2px; border: 2px solid #dedbda; float: left; margin-right: 15px; margin-top:30px;}
+
+.module { margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px dotted #413e3e;}
+
+.date { display: block; font-family: Georgia, "Times New Roman", Times, serif; font-size: 120%; margin-bottom: 5px; }
+
+#following li { margin-bottom: 15px;}
+#following li a { float: left; color: #bebbb8; font-size: 120%;}
+
+button, .linkReplacement, .delete { text-indent: -9999em; display: block; cursor: pointer; border: none; }
+.addBtn { background: url(/images/btn_add.jpg) top left no-repeat; width: 108px; height: 35px; margin-top: 15px;}
+.addBtn:hover { background: url(/images/btn_add.jpg) bottom left no-repeat; }
+.sendBtn { background: url(/images/btn_send.jpg) top left no-repeat; width: 174px; height: 35px; margin-top: 15px; margin-left: 120px;}
+.sendBtn:hover { background: url(/images/btn_send.jpg) bottom left no-repeat; }
+.signupBtn { background: url(/images/btn_signup.jpg) top left no-repeat; width: 141px; height: 35px; margin-top: 15px; margin-left: 120px;}
+.signupBtn:hover { background: url(/images/btn_signup.jpg) bottom left no-repeat; }
+.signinBtn { background: url(/images/btn_signin.jpg) top left no-repeat; width: 141px; height: 35px; margin-top: 15px; margin-left: 120px;}
+.signinBtn:hover { background: url(/images/btn_signin.jpg) bottom left no-repeat; }
+.postBtn { background: url(/images/btn_post.jpg) top left no-repeat; width: 116px; height: 35px; margin-top: 15px; margin-left: 82px;}
+.postBtn:hover { background: url(/images/btn_post.jpg) bottom left no-repeat; }
+
+.delete { background: url(/images/icon_delete.jpg) top left no-repeat; float: left; width: 15px; height: 15px; margin-top: 2px; margin-left: 15px; display: none;}
+
+input, textarea { background: url(/images/bg_input.jpg) top left repeat; border: none; -moz-border-radius: 3px; -webkit-border-radius: 3px; padding: 10px; color: #5d5654; border: 1px solid #ced0c5;}
+textarea { height: 200px;}
+#rtColumn #comment textarea { height: 100px; width: 450px;}
+#ltColumn input { width: 270px;}
+#rtColumn label { width: 120px; display: block; float: left;}
+#rtColumn form li { margin-bottom: 15px; }
+#rtColumn input, #rtColumn textarea { width: 300px; }
+
+#rtColumn #sunlightSignUp { width: auto; display: block; margin-left: 120px;}
+
+article { border-bottom: 1px dotted #7d7776; margin-bottom: 30px; padding-bottom: 30px; display: block;}
+article li { float: left; margin-right: 15px;}
+.articleContent { float: left; width: 485px;}
+
+#pageMain .checkbox { margin-right: 15px; width: 15px;}
+div.scroll { -moz-border-radius: 3px 3px 3px 3px; border: 2px solid #E2E7E7; height: 80px; overflow: auto; padding: 5px; background: url(/images/bg_input.jpg) top left repeat; }
+
+#comment { margin-top: 40px;}
+#comment label { width: 82px;}
+#comments li { border-bottom: 1px dotted #b1aaa9; margin-bottom: 20px; padding-bottom: 20px;}
+.postNumber { font-size: 900%; font-family: Georgia, "Times New Roman", Times, serif; display: block; float: left; width: 82px; line-height: 70px;}
+.postContent { float: left; width: 450px;}
+#comments #lastComment { border-bottom: none;}
+
+#sf { background: url(/images/logo_sf.png) top left no-repeat; width: 116px; height: 53px; float: left; margin-right: 70px;}
+
+#footerNav a, #headerNav a { text-transform: uppercase; text-decoration: none; font-size: 105%; color: #fdfbfb; }
+#footerNav .last, #headerNav .last { border-left: 1px solid #605e5b; padding-left: 30px; margin-left: 30px;}
+#footerNav { width: 200px; margin: 0 auto;}
+
+#footerWrapper { background: url(/images/footer_wrapper.jpg) center top repeat-x; height: 209px;}
+footer { padding-top: 60px;}
+#footerNav li { float: left;}
+#footerNav { margin-bottom: 40px;}
+footer p { color: #bebbb8; padding-top: 17px;}
