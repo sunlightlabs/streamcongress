@@ -1,0 +1,16 @@
+{
+  "name": "Stream Congress",
+  "description": "A real-time peek at Congress",
+  "version": "1",
+  "app": {
+    "urls": [
+      "http://streamcongress.com/"
+    ],
+    "launch": {
+      "web_url": "http://streamcongress.com/"
+    }
+  },
+  "icons": {
+    "128": "streamcongress_128.png"
+  }
+}
