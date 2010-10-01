@@ -24,6 +24,15 @@
     </header>
     <div id="mainContent">
       <div id="ltColumn">
+        <div id="congressSessions">
+          <dl>
+            <dt class="in">House</dt>
+            <dd>In Session</dd>
+
+            <dt class="out">Senate</dt>
+            <dd>Returns Oct. 1st</dd>
+          </dl>
+        </div>
         <div class="module">
           <h3 class="withTip">Currently Following</h3>
           <span class="tip">Our computers tell us that you live in Fairfax, VA. Is this not right? <a href="#">Change your state now.</a></span>
@@ -167,8 +176,10 @@
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
   </script>
+  <script type="text/javascript" src="http://use.typekit.com/lah1cne.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
   <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'></script>
   <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/jquery-ui.min.js'></script>
-  <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag 'application' %>
 </body>
 </html>

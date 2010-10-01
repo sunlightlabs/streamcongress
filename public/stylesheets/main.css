@@ -34,8 +34,8 @@ header, #mainContent, footer { width: 940px; margin: 0 auto; display: block; pad
 header { height: 205px; margin-bottom: 60px;}
 #headerNav li { float: left;}
 
-h1 { width: 217px; height: 68px; padding-top: 40px; margin-bottom: 50px;}
-h1 a { display: block; text-indent: -9999em; width: 217px; height: 68px; background: url(/images/logo.png) top left no-repeat;}
+h1 { width: 266px; height: 68px; padding-top: 55px; margin-bottom: 35px;}
+h1 a { display: block; text-indent: -9999em; width: 266px; height: 68px; background: url(/images/logo.png) top left no-repeat;}
 
 #ltColumn { float: left; width: 290px; margin-right: 29px;}
 #rtColumn { float: left; width: 570px; background-color: #fafdf6; padding: 0 25px 0 26px; padding-bottom: 80px;}
@@ -55,6 +55,13 @@ h4 { color: #e0dcd9; font-size: 130%; margin-bottom: 15px;}
 #rtColumn h4 { color: #5D5654;}
 #commentTitle { margin-top: 40px; }
 #commentTitle, #comment h4 { margin-left: 82px;}
+
+#congressSessions { margin-left: -25px; color: #2C2624; background: url(/images/bg_session.png) top left no-repeat; margin-bottom: 20px; padding: 28px 0 0 82px; height: 91px; font-family: Georgia, "Times New Roman", Times, serif;}
+
+dt { float: left; font-weight: bold;  width: 60px;}
+.in { background: url(/images/icon_arrowsGreen.png) left 5px no-repeat; padding-left: 17px;}
+.out { background: url(/images/icon_arrowsRed.png) left 5px no-repeat; padding-left: 17px;}
+dd { font-style: oblique;}
 
 img { padding: 2px; border: 2px solid #dedbda; float: left; margin-right: 15px; margin-top:30px;}
 
