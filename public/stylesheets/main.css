@@ -41,15 +41,15 @@ h1 a { display: block; text-indent: -9999em; width: 266px; height: 68px; backgro
 #rtColumn { float: left; width: 570px; background-color: #fafdf6; padding: 0 25px 0 26px; padding-bottom: 80px;}
 #rtColumn_content { margin-top: -45px;}
 
-h2 { font-family: Georgia, "Times New Roman", Times, serif; font-size: 190%; color: #fdfcfb; margin-bottom: 20px; line-height: 26px;}
+h2 { font-family: 'IM Fell Great Primer', Georgia, "Times New Roman", Times, serif; font-size: 190%; color: #fdfcfb; margin-bottom: 20px; line-height: 26px;}
 h2.withTip { margin-bottom: 15px;}
 article h2 { margin-bottom: 10px;}
 
 #rtColumn h2 { color: #2c2624;}
 #ltColumn form { padding-bottom: 40px;}
 
-h3 { font-family: Georgia, "Times New Roman", Times, serif; font-size: 160%; color: #fdfcfb; margin-bottom: 20px; line-height: 26px;}
-#rtColumn h3 { font-family: Georgia, "Times New Roman", Times, serif; font-size: 140%; color: #2C2624; line-height: 24px; margin-bottom: 10px;}
+h3 { font-family: 'IM Fell Great Primer', Georgia, "Times New Roman", Times, serif; font-size: 160%; color: #fdfcfb; margin-bottom: 20px; line-height: 26px;}
+#rtColumn h3 { font-family: 'IM Fell Great Primer', Georgia, "Times New Roman", Times, serif; font-size: 140%; color: #2C2624; line-height: 24px; margin-bottom: 10px;}
 #happeningTitle { font-size: 100%; margin-left: 120px; position: absolute; top: 88px;}
 h4 { color: #e0dcd9; font-size: 130%; margin-bottom: 15px;}
 #rtColumn h4 { color: #5D5654;}
@@ -67,7 +67,7 @@ img { padding: 2px; border: 2px solid #dedbda; float: left; margin-right: 15px; 
 
 .module { margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px dotted #413e3e;}
 
-.date { display: block; font-family: Georgia, "Times New Roman", Times, serif; font-size: 120%; margin-bottom: 5px; }
+.date { display: block; font-family: 'IM Fell Great Primer', Georgia, "Times New Roman", Times, serif; font-size: 120%; margin-bottom: 5px; }
 
 #following li { margin-bottom: 15px;}
 #following li a { float: left; color: #bebbb8; font-size: 120%;}
