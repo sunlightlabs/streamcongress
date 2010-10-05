@@ -6,6 +6,8 @@ gem "fastercsv"
 gem "mongoid", "2.0.0.beta.18"
 gem "bson_ext", "1.0.4"
 gem "twitter"
+gem "ruby-openid"
+gem "rack-openid"
 
 group :test, :development do
   gem "rspec-rails", ">= 2.0.0.beta.22"

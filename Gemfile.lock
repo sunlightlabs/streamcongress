@@ -30,7 +30,7 @@ GEM
     activesupport (3.0.0)
     arel (1.0.1)
       activesupport (~> 3.0.0)
-    autotest (4.4.0)
+    autotest (4.4.1)
     bson (1.0.4)
     bson_ext (1.0.4)
     builder (2.1.2)
@@ -79,6 +79,9 @@ GEM
     rack (1.2.1)
     rack-mount (0.6.13)
       rack (>= 1.0.0)
+    rack-openid (1.2.0)
+      rack (>= 1.1.0)
+      ruby-openid (>= 2.1.8)
     rack-test (0.5.6)
       rack (>= 1.0)
     rails (3.0.0)
@@ -108,6 +111,7 @@ GEM
       rspec-expectations (= 2.0.0.beta.22)
     rspec-rails (2.0.0.beta.22)
       rspec (= 2.0.0.beta.22)
+    ruby-openid (2.1.8)
     rubyzip (0.9.4)
     selenium-webdriver (0.0.28)
       ffi (>= 0.6.1)
@@ -115,7 +119,7 @@ GEM
       rubyzip
     steak (1.0.0.beta.2)
       rspec
-    thor (0.14.2)
+    thor (0.14.3)
     treetop (1.4.8)
       polyglot (>= 0.3.1)
     twitter (0.9.12)
@@ -137,8 +141,10 @@ DEPENDENCIES
   fastercsv
   mongoid (= 2.0.0.beta.18)
   mongoid-rspec
+  rack-openid
   rails (= 3.0.0)
   rr
   rspec-rails (>= 2.0.0.beta.22)
+  ruby-openid
   steak (>= 1.0.0.beta.2)
   twitter

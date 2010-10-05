@@ -1,6 +1,9 @@
 Streamcongress::Application.routes.draw do
 
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   root :to => "main#index"
+  match 'auth' => 'sessions#new', :as => :auth
+  match 'out' => 'sessions#destroy', :as => :out
+  
+  resource :session
   
 end
