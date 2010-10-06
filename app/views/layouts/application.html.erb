@@ -31,47 +31,46 @@
       <div id="ltColumn">
         <div id="congressSessions">
           <dl>
-            <dt class="in">House</dt>
-            <dd>In Session</dd>
+            <dt class="out">House</dt>
+            <dd>Returns Nov. 14</dd>
 
             <dt class="out">Senate</dt>
-            <dd>Returns Oct. 1st</dd>
+            <dd>Returns Oct. 8</dd>
           </dl>
         </div>
         <div class="module">
           <h3 class="withTip">Currently Following</h3>
-          <span class="tip">Our computers tell us that you live in Fairfax, VA. Is this not right? <a href="#">Change your state now.</a></span>
+          <% if signed_in? -%>
+          <span class="tip" id="following_tip">Edit your follow list below.</span>
+          <% else -%>
+            <span class="tip" id="following_tip">Please allow location detection to auto-follow your elected officials.</span>
+          <% end -%>
           <ul id="following">
             <li>
-              <a href="#">U.S. Senate</a>
+              <a href="#">Senate Floor Updates</a>
               <a class="delete" href="#">Delete</a>
               <div class="clear"></div>
             </li>
             <li>
-              <a href="#">U.S. House of Representatives</a>
+              <a href="#">House Floor Updates</a>
               <a class="delete" href="#">Delete</a>
               <div class="clear"></div>
             </li>
             <li>
-              <a href="#">Sen. Gerry Connolly (D-VA)</a>
+              <a href="#">Senate Tweets</a>
               <a class="delete" href="#">Delete</a>
               <div class="clear"></div>
             </li>
             <li>
-              <a href="#">Rep. Mark Warner (D-VA)</a>
-              <a class="delete" href="#">Delete</a>
-              <div class="clear"></div>
-            </li>
-            <li>
-              <a href="#">Sen. Jim Webb (D-VA)</a>
+              <a href="#">House Tweets</a>
               <a class="delete" href="#">Delete</a>
               <div class="clear"></div>
             </li>
           </ul>
         </div>
         <div class="module">
-          <h3>Add Lawmakers</h3>
-          <h4>Popular Groups</h4>
+          <h3>Follow More</h3>
+          <h4>Groupings</h4>
           <form action="#">
             <div class="scroll">
               <ul>
@@ -93,7 +92,7 @@
               <span>Add</span>
             </button>
           </form>
-          <h3>Type in the name of another lawmaker you'd like to follow</h3>
+          <h4>Type in the name of a specific legislator</h4>
           <form action="#">
             <input id="id_name" type="text" name="name"/>
             <button class="addBtn" type="submit">
@@ -126,6 +125,10 @@
     </div>
   </div>
   <script type="text/javascript">
+
+    var signed_in = <%= signed_in? %>;
+    var sunlight_key = 'eb9a0cebe6e940cf827ca2592b11fc3f'
+
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-1265484-67']);
     _gaq.push(['_setDomainName', 'none']);
@@ -140,6 +143,6 @@
   </script>
   <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'></script>
   <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/jquery-ui.min.js'></script>
-  <%= javascript_include_tag 'application' %>
+  <%= javascript_include_tag 'application', 'underscore.min' %>
 </body>
 </html>
