@@ -18,13 +18,19 @@ class SessionsController < ApplicationController
       case openid.status
       when :success
         ax = OpenID::AX::FetchResponse.from_success_response(openid)
-        user = Subscriber.first(:conditions => { :identifier_url => openid.display_identifier })
-        user ||= Subscriber.create!(:identifier_url => openid.display_identifier,
-                              :email => ax.get_single('http://axschema.org/contact/email'),
-                              :first_name => ax.get_single('http://axschema.org/namePerson/first'),
-                              :last_name => ax.get_single('http://axschema.org/namePerson/last'))
-        session[:user_id] = user.id
-        redirect_to root_path
+        if user = Subscriber.first(:conditions => { :identifier_url => openid.display_identifier })
+          session[:user_id] = user.id
+          redirect_to root_path
+        else
+          display_name = ax.get_single('http://axschema.org/namePerson/first').to_s + " " + ax.get_single('http://axschema.org/namePerson/last').to_s
+          display_name.strip!
+          display_name = "Engaged Citizen" if display_name == ""
+          user = Subscriber.create!(:identifier_url => openid.display_identifier,
+                                    :email => ax.get_single('http://axschema.org/contact/email'),
+                                    :display_name => display_name)
+          session[:user_id] = user.id
+          redirect_to settings_path
+        end
       when :failure
         render :action => 'problem'
       end
