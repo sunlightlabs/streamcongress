@@ -30,18 +30,19 @@ p { margin-bottom: 1em;}
 .tip, .commentMetaData { color: #9f9b97; font-family: Georgia, "Times New Roman", Times, serif; font-style: oblique; font-size: 95%; line-height: 18px; margin-bottom: 30px; display: block;}
 .commentMetaData { margin-bottom: 10px;}
 
-#pageMain { background: url(/images/bg_header.jpg) top center no-repeat; display: block; height: 380px;}
+#pageMain { background: url(/images/bg_header2.jpg) top center no-repeat; display: block; height: 380px;}
 header, #mainContent, footer { width: 940px; margin: 0 auto; display: block; padding: 0 10px;}
 
 header { height: 205px; margin-bottom: 60px;}
 #headerNav li { float: left;}
+#headerNav li:hover, #footerNav li:hover { text-decoration: underline;}
 
 h1 { width: 266px; height: 68px; padding-top: 55px; margin-bottom: 35px;}
 h1 a { display: block; text-indent: -9999em; width: 266px; height: 68px; background: url(/images/logo.png) top left no-repeat;}
 
-#ltColumn { float: left; width: 290px; margin-right: 29px;}
-#rtColumn { float: left; width: 570px; background-color: #fafdf6; padding: 0 25px 0 26px; padding-bottom: 80px;}
-#rtColumn_content { margin-top: -45px;}
+#ltColumn { float: left; width: 292px; margin-right: 29px;}
+#rtColumn { float: left; width: 569px; background-color: #fafdf6; padding: 0 25px 0 25px; padding-bottom: 80px; margin-top: 115px;}
+#rtColumn_content { margin-top: -125px;}
 
 h2 { font-family: 'Typewriter', Georgia, "Times New Roman", Times, serif; font-size: 190%; color: #fdfcfb; margin-bottom: 20px; line-height: 26px;}
 h2.withTip { margin-bottom: 15px;}
@@ -53,6 +54,7 @@ article h2 { margin-bottom: 10px;}
 h3 { font-family: 'Typewriter', Georgia, "Times New Roman", Times, serif; font-size: 160%; color: #fdfcfb; margin-bottom: 20px; line-height: 26px;}
 #rtColumn h3 { font-family: 'Typewriter', Georgia, "Times New Roman", Times, serif; font-size: 140%; color: #2C2624; line-height: 24px; margin-bottom: 10px;}
 #happeningTitle { font-size: 100%; margin-left: 120px; position: absolute; top: 88px;}
+h3.withTip { margin-bottom: 5px;}
 h4 { color: #e0dcd9; font-size: 130%; margin-bottom: 15px;}
 #rtColumn h4 { color: #5D5654;}
 #commentTitle { margin-top: 40px; }
@@ -103,7 +105,7 @@ article li { float: left; margin-right: 15px;}
 .articleContent { float: left; width: 485px;}
 
 #pageMain .checkbox { margin-right: 15px; width: 15px;}
-div.scroll { -moz-border-radius: 3px 3px 3px 3px; border: 2px solid #E2E7E7; height: 80px; overflow: auto; padding: 5px; background: url(/images/bg_input.jpg) top left repeat; }
+div.scroll { -moz-border-radius: 3px; -webkit-border-radius: 3px; border: 2px solid #E2E7E7; height: 80px; overflow: auto; padding: 5px; background: url(/images/bg_input.jpg) top left repeat; }
 
 #comment { margin-top: 40px;}
 #comment label { width: 82px;}

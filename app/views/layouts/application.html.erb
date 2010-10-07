@@ -20,9 +20,8 @@
           <li>Logged in as <%= current_user.display_name %></li>
           <li><%= link_to "Sign Out", out_path %></li>
           <% else -%>
-          <li><%= link_to "Sign In", auth_path %></li>
+          <li><%= link_to "Sign In With Google", auth_path %></li>
           <% end -%>
-          <li class="last"><a href="#">About</a></li>
         </ul>
         <div class="clear"></div>
       </div>
