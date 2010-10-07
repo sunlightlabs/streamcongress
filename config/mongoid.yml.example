@@ -1,0 +1,15 @@
+defaults: &defaults
+  host: localhost
+  skip_version_check: true
+
+development:
+  <<: *defaults
+  database: streamcongress_development
+
+test:
+  <<: *defaults
+  database: streamcongress_test
+
+production:
+  <<: *defaults
+  database: streamcongress_production
