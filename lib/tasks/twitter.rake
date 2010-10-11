@@ -29,6 +29,7 @@ namespace :fetch do
                            :source_id => tweet.id,
                            :source_url => "http://twitter.com/" + tweet.user.screen_name + "/status/" + tweet.id.to_s,
                            :publishers => [publisher, tweetstream])
+          puts "New Tweet: " + tweet.id
         end
       end
     end

@@ -12,7 +12,7 @@ end
 namespace :fetch do
   
   desc "Load recent YouTube videos"
-  task :youtube do
+  task :videos do
     
     Publisher.all(:conditions => {:minute_id => Time.now.min}).each do |member|
       if member.youtube_id
@@ -27,7 +27,7 @@ namespace :fetch do
                                :source_id => video["id"],
                                :source_url => "http://www.youtube.com/watch?v=" + video["id"],
                                :publishers => [publisher])
-              puts "Created for: " + video["id"]
+              puts "New YouTube video: " + video["id"]
             end
           end
         end
