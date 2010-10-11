@@ -15,11 +15,20 @@ class Publisher
   field :youtube_id
   field :minute_id, :type => Integer
   
+  index :publisher_type
+  index :title
+  index :party
+  index :bioguide_id
+  index :govtrack_id
+  index :twitter_id
+  index :youtube_id
+  index :minute_id
+  
+  referenced_in :activity
+
   validates_presence_of :name
   validates_presence_of :publisher_type
   
   validates_inclusion_of :publisher_type, :in => ["member", "group", "app"]
-
-  referenced_in :activity
   
 end
