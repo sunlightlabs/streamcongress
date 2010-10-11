@@ -13,6 +13,7 @@ class Publisher
   field :govtrack_id
   field :twitter_id
   field :youtube_id
+  field :minute_id, :type => Integer
   
   validates_presence_of :name
   validates_presence_of :publisher_type

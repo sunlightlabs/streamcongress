@@ -12,10 +12,17 @@ namespace :load do
                           :bioguide_id => row["bioguide_id"],
                           :govtrack_id => row["govtrack_id"],
                           :twitter_id => row["twitter_id"],
-                          :youtube_id => youtube_id(row["youtube_url"]))
+                          :youtube_id => youtube_id(row["youtube_url"]),
+                          :minute_id => rand(60))
       end
     end
   end
+  
+  task :legislator_minutes do
+    Publisher.all(:conditions => {:publisher_type => "member"}).each do |member|
+      member.update_attributes!(:minute_id => rand(60))
+    end
+  end  
   
   task :other_publishers do
     YAML.load_file(Rails.root + "data/publishers.yml").each do |entry|
@@ -25,8 +32,7 @@ namespace :load do
     end
   
   end
-  
-  
+    
   def common_name(row)
     (row["nickname"].empty? ? row["firstname"] : row["nickname"]) + " " + row["lastname"]
   end
