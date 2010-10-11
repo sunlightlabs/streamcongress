@@ -20,7 +20,7 @@ namespace :fetch do
     house_tweets = Publisher.first(:conditions => {:name => "House Tweets"})
     
     client.friends_timeline(:count => 200, :since => last_id).each  do |tweet|
-      unless Activity.first(:conditions => {:source_id => tweet.id})
+      unless Activity.first(:conditions => {:source_name => "twitter", :source_id => tweet.id})
         if publisher = Publisher.first(:conditions => {:twitter_id => tweet.user.screen_name})
 
           tweetstream = publisher.title == 'Sen' ? senate_tweets : house_tweets
@@ -29,8 +29,6 @@ namespace :fetch do
                            :source_id => tweet.id,
                            :source_url => "http://twitter.com/" + tweet.user.screen_name + "/status/" + tweet.id.to_s,
                            :publishers => [publisher, tweetstream])
-          puts "@" + tweet.user.screen_name + ": " + tweet.text
-          puts ""
         end
       end
     end
