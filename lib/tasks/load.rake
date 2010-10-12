@@ -1,5 +1,5 @@
 namespace :load do
-  
+
   desc "Load all legislators"
   task :legislators do
     FasterCSV.foreach(Rails.root + "data/legislators.csv", :headers => :first_row) do |row|
@@ -17,22 +17,21 @@ namespace :load do
       end
     end
   end
-  
+
   task :legislator_minutes do
     Publisher.all(:conditions => {:publisher_type => "member"}).each do |member|
       member.update_attributes!(:minute_id => rand(60))
     end
-  end  
-  
+  end
+
   task :other_publishers do
     YAML.load_file(Rails.root + "data/publishers.yml").each do |entry|
       publisher = entry[1]
       Publisher.create!(:name => publisher["name"],
                         :publisher_type => publisher["publisher_type"])
     end
-  
   end
-    
+
   def common_name(row)
     (row["nickname"].empty? ? row["firstname"] : row["nickname"]) + " " + row["lastname"]
   end
@@ -40,5 +39,5 @@ namespace :load do
   def youtube_id(url)
     url.split('/').last
   end
-  
+
 end
