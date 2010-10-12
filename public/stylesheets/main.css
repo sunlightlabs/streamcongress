@@ -35,7 +35,7 @@ header, #mainContent, footer { width: 940px; margin: 0 auto; display: block; pad
 
 header { height: 205px; margin-bottom: 60px;}
 #headerNav li { float: left;}
-#headerNav li:hover, #footerNav li:hover { text-decoration: underline;}
+#headerNav li a:hover, #footerNav li a:hover { text-decoration: underline;}
 
 h1 { width: 266px; height: 68px; padding-top: 55px; margin-bottom: 35px;}
 h1 a { display: block; text-indent: -9999em; width: 266px; height: 68px; background: url(/images/logo.png) top left no-repeat;}
