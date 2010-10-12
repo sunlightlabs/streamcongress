@@ -14,8 +14,8 @@ namespace :fetch do
   desc "Load recent news articles"
   task :news do
     
-    hours = (0..23).to_a # uncomment when testing
-    #hours = [5,7,9,10,12,14,15,17,19]
+    hours = (0..23).to_a
+    hours = [5,7,9,10,12,14,15,17,19] if Rails.env == 'production'
     if hours.include? Time.now.hour
       Publisher.all(:conditions => {:minute_id => Time.now.min}).each do |member|
         articles = YahooNews.latest_news(member.name).parsed_response["ResultSet"]["Result"]
