@@ -30,15 +30,9 @@ namespace :fetch do
             puts "New news hit: " + article["Url"]
           else 
             unless activity.publishers.include? member
-              puts "Adding " + member.name
               activity.publishers << member
               activity.save!
-              puts "Added!"
-              puts "Count: " + activity.publishers.count.to_s
-              puts "Updated news hit: " + article["Url"] + " for " + member.name
-              activity.publishers.each do |p|
-                puts p.name
-              end
+              puts "Updated news hit: " + article["Url"] + " - Added: " + member.name
             end
           end # unless Activity
         end # news.each
