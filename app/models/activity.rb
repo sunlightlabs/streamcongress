@@ -9,10 +9,10 @@ class Activity
   field :source_id
   field :source_url
 
-  index :source_id
-  index([[:source_name, Mongo::ASCENDING], [:source_id, Mongo::ASCENDING]])
+  #index :source_id
+  #index([[:source_name, Mongo::ASCENDING], [:source_id, Mongo::ASCENDING]])
   
-  references_many :publishers, :stored_as => :array, :index => true
+  references_many :publishers, :stored_as => :array#, :index => true
   
   validates_presence_of :main_content
   validates_presence_of :source_name
