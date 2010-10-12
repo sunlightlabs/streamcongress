@@ -1,3 +1,13 @@
+GIT
+  remote: git://github.com/mongoid/mongoid.git
+  revision: b1080cda54d32d3bc18e008867b33b82d64fb55b
+  specs:
+    mongoid (2.0.0.beta.19)
+      activemodel (~> 3.0)
+      mongo (~> 1.1)
+      tzinfo (~> 0.3.22)
+      will_paginate (~> 3.0.pre)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -31,8 +41,8 @@ GEM
     arel (1.0.1)
       activesupport (~> 3.0.0)
     autotest (4.4.1)
-    bson (1.0.4)
-    bson_ext (1.0.4)
+    bson (1.1)
+    bson_ext (1.1)
     builder (2.1.2)
     capybara (0.3.9)
       culerity (>= 0.2.4)
@@ -62,14 +72,8 @@ GEM
       mime-types
       treetop (>= 1.4.5)
     mime-types (1.16)
-    mongo (1.0.7)
-      bson (>= 1.0.4)
-    mongoid (2.0.0.beta.18)
-      activemodel (~> 3.0.0)
-      bson (= 1.0.4)
-      mongo (= 1.0.7)
-      tzinfo (~> 0.3.22)
-      will_paginate (~> 3.0.pre)
+    mongo (1.1)
+      bson (>= 1.0.5)
     mongoid-rspec (1.2.1)
       bson_ext (>= 1.0.4)
       mongoid (>= 2.0.0.beta.15)
@@ -138,12 +142,12 @@ PLATFORMS
 
 DEPENDENCIES
   autotest
-  bson_ext (= 1.0.4)
+  bson_ext (= 1.1)
   capybara
   database_cleaner (>= 0.6.0.rc.3)
   fastercsv
   httparty
-  mongoid (= 2.0.0.beta.18)
+  mongoid!
   mongoid-rspec
   rack-openid
   rails (= 3.0.0)
