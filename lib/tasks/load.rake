@@ -18,12 +18,14 @@ namespace :load do
     end
   end
 
+  desc "Assign minute_ids to legislators"
   task :legislator_minutes do
     Publisher.all(:conditions => {:publisher_type => "member"}).each do |member|
       member.update_attributes!(:minute_id => rand(60))
     end
   end
 
+  desc "Load other publishers"
   task :other_publishers do
     YAML.load_file(Rails.root + "data/publishers.yml").each do |entry|
       publisher = entry[1]
