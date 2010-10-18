@@ -1,10 +1,9 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.0'
+gem 'rails', '3.0.1'
 
 gem "fastercsv"
 gem "bson_ext", "1.1"
-#gem "mongoid", "2.0.0.beta.18"
 gem "mongoid", :git => "git://github.com/mongoid/mongoid.git"
 gem "twitter"
 gem "httparty"
@@ -12,7 +11,7 @@ gem "ruby-openid"
 gem "rack-openid"
 
 group :test, :development do
-  gem "rspec-rails", ">= 2.0.0.beta.22"
+  gem "rspec-rails", ">= 2.0.1"
   gem "steak", ">= 1.0.0.beta.2"
   gem "autotest"
   gem "capybara"
