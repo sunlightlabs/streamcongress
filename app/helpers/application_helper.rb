@@ -8,4 +8,8 @@ module ApplicationHelper
     @current_user ||= Subscriber.first(:conditions => {:id => session[:user_id]})
   end
 
+  def default_follows
+    Publisher.where(:publisher_type => "group").map{ |pub| [pub.name, pub.id.to_s] }
+  end
+  
 end
