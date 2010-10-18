@@ -12,19 +12,7 @@ var gotLocation = function(loc) {
     jsonp: 'jsonp',
     success: function(data) {
 
-      var following_list = $('ul#following');
-
-      _(data.response.legislators).each(function(leg_obj) {
-        var legislator = leg_obj.legislator;
-        var name = legislator.title + ". ";
-        if (legislator.nickname == "") {
-          name = name + legislator.firstname;
-        } else {
-          name = name + legislator.nickname;
-        }
-        name = name + " " + legislator.lastname + " (" + legislator.party + "-" + legislator.state + ")";
-        following_list.append('<li><a href="#">' + name + '</a><a class="delete" href="#">Delete</a><div class="clear"></div></li>');
-      });
     }
   });
 }
+
