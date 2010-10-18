@@ -68,7 +68,7 @@ dt { float: left; font-weight: bold;  width: 60px;}
 dd { font-style: oblique;}
 
 img { padding: 2px; border: 2px solid #dedbda; float: left; margin-right: 15px; margin-top:30px;}
-
+img.ajaxLoader { padding: 0 0; border: none; margin: 0 5px 10px;}
 .module { margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px dotted #413e3e;}
 
 .date { display: block; font-family: 'Typewriter', Georgia, "Times New Roman", Times, serif; font-size: 120%; margin-bottom: 5px; }
