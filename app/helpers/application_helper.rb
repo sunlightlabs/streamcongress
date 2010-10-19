@@ -9,7 +9,7 @@ module ApplicationHelper
   end
 
   def default_follows
-    Publisher.where(:publisher_type => "group").order_by(:name.desc).map do |pub| 
+    Publisher.where(:publisher_type => "group").order_by(:name.asc).map do |pub| 
       [pub.name, pub.id.to_s]
     end
   end
