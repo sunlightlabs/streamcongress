@@ -42,7 +42,7 @@ GEM
       activesupport (~> 3.0.0)
     autotest (4.4.1)
     bson (1.1.1)
-    bson_ext (1.1)
+    bson_ext (1.1.1)
     builder (2.1.2)
     capybara (0.3.9)
       culerity (>= 0.2.4)
@@ -105,16 +105,16 @@ GEM
       thor (~> 0.14.0)
     rake (0.8.7)
     rr (1.0.0)
-    rspec (2.0.0)
-      rspec-core (= 2.0.0)
-      rspec-expectations (= 2.0.0)
-      rspec-mocks (= 2.0.0)
-    rspec-core (2.0.0)
-    rspec-expectations (2.0.0)
+    rspec (2.0.1)
+      rspec-core (~> 2.0.1)
+      rspec-expectations (~> 2.0.1)
+      rspec-mocks (~> 2.0.1)
+    rspec-core (2.0.1)
+    rspec-expectations (2.0.1)
       diff-lcs (>= 1.1.2)
-    rspec-mocks (2.0.0)
-      rspec-core (= 2.0.0)
-      rspec-expectations (= 2.0.0)
+    rspec-mocks (2.0.1)
+      rspec-core (~> 2.0.1)
+      rspec-expectations (~> 2.0.1)
     rspec-rails (2.0.1)
       rspec (~> 2.0.0)
     ruby-openid (2.1.8)
@@ -142,7 +142,7 @@ PLATFORMS
 
 DEPENDENCIES
   autotest
-  bson_ext (= 1.1)
+  bson_ext
   capybara
   database_cleaner (>= 0.6.0.rc.3)
   fastercsv

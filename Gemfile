@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '3.0.1'
 
 gem "fastercsv"
-gem "bson_ext", "1.1"
+gem "bson_ext"
 gem "mongoid", :git => "git://github.com/mongoid/mongoid.git"
 gem "twitter"
 gem "httparty"
