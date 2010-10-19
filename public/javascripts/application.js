@@ -1,7 +1,19 @@
 $(document).ready(function() {
 
-  if (!signed_in) {
+  if (!signed_in && _(JSON.parse(localStorage["following"])).isEmpty()) {
+
+    var following = [];
+    _(defaultFollows).each(function(pair) {
+      following.push({"name": pair[0], "id": pair[1] })
+    });
+    localStorage["following"] = JSON.stringify(following);
+
     navigator.geolocation.getCurrentPosition(gotLocation);
+
+  } else {
+    $('span#following_tip').text("Loaded your saved follow list...");
+    $('article#geolocationPrompt').hide();
+    loadFollowing();
   }
 
   ws = new WebSocket("ws://localhost:8080");
@@ -9,27 +21,19 @@ $(document).ready(function() {
     $("#stream").prepend("<p class='activity'>" + activity.data + "</p>");
   };
   ws.onclose = function() {
-    debug("Socket closed!");
+    //debug("Socket closed!");
   };
   ws.onopen = function() {
-    debug("Socket connected!");
+    //debug("Socket connected!");
   };
 });
 
 var loadFollowing = function() {
-  var following_list = $('ul#following');
-  var following_object = localStorage.get("following");
 
-  _(following_object).each(function(leg_obj) {
-    var legislator = leg_obj.legislator;
-    var name = legislator.title + ". ";
-    if (legislator.nickname == "") {
-      name = name + legislator.firstname;
-    } else {
-      name = name + legislator.nickname;
-    }
-    name = name + " " + legislator.lastname + " (" + legislator.party + "-" + legislator.state + ")";
-    following_list.append('<li><a href="#">' + name + '</a><a class="delete" href="#">Delete</a><div class="clear"></div></li>');
+  var following_ul = $('ul#following');
+
+  _(JSON.parse(localStorage["following"])).each(function(publisher) {
+    following_ul.append('<li><a href="#">' + publisher["name"] + '</a><a class="delete" href="#">Delete</a><div class="clear"></div></li>');
   });
 
 }
