@@ -9,7 +9,7 @@ var gotLocation = function(loc) {
   $.getJSON(geo_url, function(data) {
     var address = data.address;
     $('span#following_tip').text("Current city: " + address.city);
-    localStorage["currentCity"] = address.city;
+    store.set("currentCity", address.city);
   });
 
   var sunlight_url = 'http://services.sunlightlabs.com/api/legislators.allForLatLong.json?jsonp=?&apikey=eb9a0cebe6e940cf827ca2592b11fc3f&latitude=' + loc.coords.latitude + '&longitude=' + loc.coords.longitude;
@@ -18,13 +18,13 @@ var gotLocation = function(loc) {
     dataType: 'json',
     jsonp: 'jsonp',
     success: function(data) {
-      var following = JSON.parse(localStorage["following"]);
+      var following = store.get("following");
       // append legislators to following
       _(data.response.legislators).each(function(leg_obj) {
         var legislator = leg_obj.legislator;
         following.push(memberLookup[legislator.bioguide_id]);
       });
-      localStorage["following"] = JSON.stringify(following);
+      store.set("following", following);
       loadFollowing();
       $('article#geolocationPrompt').hide();
     }
