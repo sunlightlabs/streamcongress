@@ -11,6 +11,8 @@ class Activity
 
   index :source_id
   index([[:source_name, Mongo::ASCENDING], [:source_id, Mongo::ASCENDING]])
+  index :created_at
+  index :updated_at
   
   references_many :publishers, :stored_as => :array, :index => true
   
