@@ -1,12 +1,11 @@
 GIT
-  remote: git://github.com/mongoid/mongoid.git
-  revision: b1080cda54d32d3bc18e008867b33b82d64fb55b
+  remote: git://github.com/indrekj/cramp.git
+  revision: ddf06184b56285a12f7f8ebaf3a0a91d80361877
   specs:
-    mongoid (2.0.0.beta.19)
-      activemodel (~> 3.0)
-      mongo (~> 1.1)
-      tzinfo (~> 0.3.22)
-      will_paginate (~> 3.0.pre)
+    cramp (0.10.1)
+      activesupport (>= 3.0.0)
+      eventmachine (~> 0.12.10)
+      rack (>= 1.1.0)
 
 GEM
   remote: http://rubygems.org/
@@ -55,13 +54,16 @@ GEM
       ffi (~> 0.6.3)
     crack (0.1.8)
     culerity (0.2.12)
+    daemons (1.1.0)
     database_cleaner (0.6.0.rc.3)
     diff-lcs (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    eventmachine (0.12.10)
     fastercsv (1.5.3)
     ffi (0.6.3)
       rake (>= 0.8.7)
+    fuzzyhash (0.0.11)
     hashie (0.4.0)
     httparty (0.6.1)
       crack (= 0.1.8)
@@ -72,8 +74,13 @@ GEM
       mime-types
       treetop (>= 1.4.5)
     mime-types (1.16)
-    mongo (1.1.1)
-      bson (>= 1.1.1)
+    mongo (1.0.9)
+      bson (>= 1.0.5)
+    mongoid (2.0.0.beta.19)
+      activemodel (~> 3.0)
+      mongo (= 1.0.9)
+      tzinfo (~> 0.3.22)
+      will_paginate (~> 3.0.pre)
     mongoid-rspec (1.2.1)
       bson_ext (>= 1.0.4)
       mongoid (>= 2.0.0.beta.15)
@@ -126,6 +133,10 @@ GEM
       rubyzip
     steak (1.0.0.rc.1)
       rspec
+    thin (1.2.7)
+      daemons (>= 1.0.9)
+      eventmachine (>= 0.12.6)
+      rack (>= 1.0.0)
     thor (0.14.3)
     treetop (1.4.8)
       polyglot (>= 0.3.1)
@@ -135,6 +146,8 @@ GEM
       multi_json (~> 0.0.4)
       oauth (~> 0.4.3)
     tzinfo (0.3.23)
+    usher (0.8.3)
+      fuzzyhash (>= 0.0.11)
     will_paginate (3.0.pre2)
 
 PLATFORMS
@@ -144,10 +157,11 @@ DEPENDENCIES
   autotest
   bson_ext
   capybara
+  cramp!
   database_cleaner (>= 0.6.0.rc.3)
   fastercsv
   httparty
-  mongoid!
+  mongoid (>= 2.0.0.beta.19)
   mongoid-rspec
   rack-openid
   rails (= 3.0.1)
@@ -155,4 +169,6 @@ DEPENDENCIES
   rspec-rails (>= 2.0.1)
   ruby-openid
   steak (>= 1.0.0.beta.2)
+  thin
   twitter
+  usher
