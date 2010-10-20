@@ -106,6 +106,7 @@
     var sunlight_key = 'eb9a0cebe6e940cf827ca2592b11fc3f'
     var defaultFollows = <%= default_follows.inspect.html_safe %>;
     var allMembers = <%= all_members.inspect.html_safe %>;
+    var activityQueue = [];
 
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-1265484-67']);
@@ -121,6 +122,12 @@
   </script>
   <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js'></script>
   <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
+  <script src='http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js'></script>
+
+  <script id="activityTemplate" type="text/x-jquery-tmpl">
+    <p>${main_content}</p>
+  </script>
+
   <%= javascript_include_tag 'store', 'application', 'geolocation', 'underscore.min' %>
 </body>
 </html>
