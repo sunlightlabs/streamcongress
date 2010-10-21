@@ -52,8 +52,6 @@ var addToStream = function(activities) {
   _(allMemberIds).each(function(tuple) {
     memberLookup[tuple[0]] = { "name" : tuple[1], "bioguide_id" : tuple[2] };
   });
-  console.log(memberLookup);
-
   _(activities).each(function(activity) {
     publisherId = determinePublisher(activity.publisher_ids);
     activity["name"] = memberLookup[publisherId]["name"];
