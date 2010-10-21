@@ -32,7 +32,7 @@ var loadFollowing = function() {
 };
 
 var backfillStream = function() {
-  var backfillSocket = new WebSocket("ws://localhost:8080/backfill");
+  var backfillSocket = new WebSocket("ws://streamcongress.com:8080/backfill");
   backfillSocket.onopen = function() {
     var following_ids = _(store.get("following")).map(function(obj) {
       return obj['id'];

@@ -10,8 +10,9 @@ Cramp::Websocket.backend = :thin
 Mongoid.configure do |config|
   file_name = File.join(File.dirname(__FILE__), "..", "config", "mongoid.yml")
   settings = YAML.load(ERB.new(File.new(file_name).read).result)
-  config.from_hash(settings['development'])
+  config.from_hash(settings[ENV["RACK_ENV"]])
 end
+
 Dir[File.expand_path("../../app/models/*.rb", __FILE__)].each  { |f| require f }
 
 
