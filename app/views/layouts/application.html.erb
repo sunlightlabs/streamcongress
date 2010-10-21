@@ -106,6 +106,7 @@
     var sunlight_key = 'eb9a0cebe6e940cf827ca2592b11fc3f'
     var defaultFollows = <%= default_follows.inspect.html_safe %>;
     var allMembers = <%= all_members.inspect.html_safe %>;
+    var allMemberIds = <%= all_member_ids.inspect.html_safe %>;
     var activityQueue = [];
 
     var _gaq = _gaq || [];
@@ -125,9 +126,22 @@
   <script src='http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js'></script>
 
   <script id="activityTemplate" type="text/x-jquery-tmpl">
-    <p>${main_content}</p>
+    <article>
+      <img src="http://assets.sunlightfoundation.com/moc/100x125/${bioguide_id}.jpg" width="59px" />
+      <div class="articleContent">
+        <a class="date" href="#">${date}</a>
+        <h3>${name} tweeted -</h3>
+        <p>${main_content}</p>
+        <ul>
+          <li><a href="#">0 comments</a></li>
+          <li><a href="${source_url}">View Original</a></li>
+        </ul>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </article>
   </script>
 
-  <%= javascript_include_tag 'store', 'application', 'geolocation', 'underscore.min' %>
+  <%= javascript_include_tag 'jquery.dateFormat', 'store', 'application', 'geolocation', 'underscore.min' %>
 </body>
 </html>

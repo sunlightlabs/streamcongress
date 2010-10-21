@@ -21,5 +21,13 @@ module ApplicationHelper
         member.id.to_s]
      end
   end
-  
+
+  def all_member_ids
+     Publisher.where(:publisher_type => "member").map do |member|
+       [member.id.to_s,
+        "#{member.title}. #{member.name} (#{member.party})",
+        member.bioguide_id]
+     end
+  end
+
 end

@@ -29,7 +29,7 @@ var loadFollowing = function() {
   });
 
   backfillStream();
-}
+};
 
 var backfillStream = function() {
   var backfillSocket = new WebSocket("ws://localhost:8080/backfill");
@@ -44,10 +44,39 @@ var backfillStream = function() {
   backfillSocket.onmessage = function(payload) {
     addToStream(JSON.parse(payload.data).reverse());
   };
-}
+};
 
 var addToStream = function(activities) {
+
+  var memberLookup = {};
+  _(allMemberIds).each(function(tuple) {
+    memberLookup[tuple[0]] = { "name" : tuple[1], "bioguide_id" : tuple[2] };
+  });
+  console.log(memberLookup);
+
   _(activities).each(function(activity) {
+    publisherId = determinePublisher(activity.publisher_ids);
+    activity["name"] = memberLookup[publisherId]["name"];
+    activity["bioguide_id"] = memberLookup[publisherId]["bioguide_id"];
+    activity["date"] = $.format.date(new Date(activity["created_at"]), "MM.dd.yyyy hh:mm a");
     activityQueue.push(activity);
   });
-}
+  processQueue();
+};
+
+var processQueue = function() {
+  setInterval(function() {
+    var activity = activityQueue.shift();
+    if (!_(activity).isUndefined()) {
+      var column = $("div#rtColumn_content");
+      $.tmpl("activity", activity).fadeIn(1500).prependTo(column);
+    }
+  }, 3500);
+};
+
+var determinePublisher = function(publisherIds) {
+  return _(publisherIds).reject(function(publisherId) {
+    return (_(_(store.get("following")).map((function(f){ return f.id; }))).include(publisherId) ||
+           _(defaultFollows).include(publisherId));
+  }).shift();
+};
