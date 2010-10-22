@@ -46,7 +46,6 @@ end
 # 
 # end
 # 
-# after 'deploy:update_code' do
-#   bundle.install
-#  deploy.symlink_config
-#end
+after 'deploy:update_code' do
+  deploy.symlink_config
+end
