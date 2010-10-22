@@ -27,10 +27,10 @@ namespace :deploy do
   end
   
   
-  # task :symlink_config do
-  #   run "ln -s #{shared_path}/config/keys.yml #{release_path}/config/keys.yml"
-  #   run "ln -s #{shared_path}/config/mail.yml #{release_path}/config/mail.yml"
-  # end
+  task :symlink_config do
+    run "ln -s #{shared_path}/config/keys.yml #{release_path}/config/keys.yml"
+    run "ln -s #{shared_path}/config/mongoid.yml #{release_path}/config/mongoid.yml"
+  end
 end
 
 # namespace :bundler do
