@@ -74,7 +74,6 @@ var processQueue = function() {
 
 var determinePublisher = function(publisherIds) {
   return _(publisherIds).reject(function(publisherId) {
-    return (_(_(store.get("following")).map((function(f){ return f.id; }))).include(publisherId) ||
-           _(defaultFollows).include(publisherId));
+    return _(defaultFollows).include(publisherId);
   }).shift();
 };
