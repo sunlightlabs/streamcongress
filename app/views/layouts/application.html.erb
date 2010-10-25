@@ -104,6 +104,7 @@
 
     var signed_in = <%= signed_in? %>;
     var sunlight_key = 'eb9a0cebe6e940cf827ca2592b11fc3f'
+    var socketDomain = '<%= Rails.env == "production" ? "streamcongress.com" : "localhost" %>';
     var defaultFollows = <%= default_follows.inspect.html_safe %>;
     var allMembers = <%= all_members.inspect.html_safe %>;
     var allMemberIds = <%= all_member_ids.inspect.html_safe %>;
