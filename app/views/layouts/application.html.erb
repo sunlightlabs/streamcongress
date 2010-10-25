@@ -130,8 +130,17 @@
       <img src="http://assets.sunlightfoundation.com/moc/100x125/${bioguide_id}.jpg" width="59px" />
       <div class="articleContent">
         <a class="date" href="#">${date}</a>
-        <h3>${name} tweeted -</h3>
+        {{if source_name == "twitter"}}
+        <h3>${name} tweeted:</h3>
         <p>${main_content}</p>
+        {{else source_name == "news"}}
+        <h3>${name} was mentioned in &quot;${main_content}&quot;:</h3>
+        <p>${secondary_content}</p>
+        {{else source_name == "youtube"}}
+        <h3>${name} posted a video:</h3>
+        <object width="300" height="250"><param name="movie" value="http://www.youtube.com/v/${source_id}?fs=1&amp;hl=en_US&amp;rel=0&amp;hd=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/${source_id}?fs=1&amp;hl=en_US&amp;rel=0&amp;hd=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="300" height="250"></embed></object><br />
+        <p>${secondary_content}</p>
+        {{/if}}
         <ul>
           <li><a href="#">0 comments</a></li>
           <li><a href="${source_url}">View Original</a></li>
