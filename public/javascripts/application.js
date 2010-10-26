@@ -2,7 +2,7 @@ $(document).ready(function() {
 
   $("#activityTemplate").template("activity");
 
-  if (!signed_in && _(store.get("following")).isEmpty()) {
+  if (!signedIn && _(store.get("following")).isEmpty()) {
 
     var following = [];
     _(defaultFollows).each(function(pair) {

@@ -12,7 +12,7 @@ var gotLocation = function(loc) {
     store.set("currentCity", address.city);
   });
 
-  var sunlight_url = 'http://services.sunlightlabs.com/api/legislators.allForLatLong.json?jsonp=?&apikey=eb9a0cebe6e940cf827ca2592b11fc3f&latitude=' + loc.coords.latitude + '&longitude=' + loc.coords.longitude;
+  var sunlight_url = 'http://services.sunlightlabs.com/api/legislators.allForLatLong.json?jsonp=?&apikey=' + sunlightKey + '&latitude=' + loc.coords.latitude + '&longitude=' + loc.coords.longitude;
   $.ajax({
     url: sunlight_url,
     dataType: 'json',
