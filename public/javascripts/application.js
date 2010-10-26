@@ -20,6 +20,9 @@ $(function() {
 
 });
 
+//
+// Grab follow list and recent activities from local storage
+//
 var loadStored = function() {
 
   var followingList = $('ul#following');
@@ -40,6 +43,9 @@ var loadStored = function() {
   backfillStream(mostRecentActivity);
 };
 
+//
+// Backfill the stream as appropriate
+//
 var backfillStream = function(mostRecentActivity) {
   var backfillSocket = new WebSocket("ws://" + socketDomain + ":8080/backfill");
   var recentId = mostRecentActivity['_id'];
@@ -53,9 +59,23 @@ var backfillStream = function(mostRecentActivity) {
 
   backfillSocket.onmessage = function(payload) {
     addToStream(JSON.parse(payload.data).reverse());
+    liveStream();
   };
 };
 
+//
+// Connect to the live stream
+//
+var liveStream = function() {
+  var liveSocket = new WebSocket("ws://" + socketDomain + ":8080/live");
+  liveSocket.onmessage = function(payload) {
+    addToStream(JSON.parse(payload.data).reverse());
+  };
+};
+
+//
+// Add activities to the in-memory queue
+//
 var addToStream = function(activities) {
   var memberLookup = {};
   _(allMemberIds).each(function(tuple) {
@@ -71,6 +91,9 @@ var addToStream = function(activities) {
   processQueue();
 };
 
+//
+// Render activities via jQuery templating
+//
 var processQueue = function() {
   setInterval(function() {
     var activity = activityQueue.shift();
@@ -82,12 +105,18 @@ var processQueue = function() {
   }, 3500);
 };
 
+//
+// Determine the publisher (member of Congress) from publisher list
+//
 var determinePublisher = function(publisherIds) {
   return _(publisherIds).reject(function(publisherId) {
-    return _(defaultFollows).include(publisherId);
+    return _(groupIds).include(publisherId);
   }).shift();
 };
 
+//
+// Persist activities already displayed to user into local storage
+//
 var addToRecentActivities = function(activity) {
   var recentActivities = store.get("recentActivities");
   if (_(recentActivities).isUndefined()) {
