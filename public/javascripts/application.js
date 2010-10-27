@@ -82,11 +82,13 @@ var addToStream = function(activities) {
     memberLookup[tuple[0]] = { "name" : tuple[1], "bioguide_id" : tuple[2] };
   });
   _(activities).each(function(activity) {
-    publisherId = determinePublisher(activity.publisher_ids);
-    activity["name"] = memberLookup[publisherId]["name"];
-    activity["bioguide_id"] = memberLookup[publisherId]["bioguide_id"];
-    activity["date"] = $.format.date(new Date(activity["created_at"]), "MM.dd.yyyy hh:mm a");
-    activityQueue.push(activity);
+    if (vetActivity(activity)) {
+      publisherId = determinePublisher(activity.publisher_ids);
+      activity["name"] = memberLookup[publisherId]["name"];
+      activity["bioguide_id"] = memberLookup[publisherId]["bioguide_id"];
+      activity["date"] = $.format.date(new Date(activity["created_at"]), "MM.dd.yyyy hh:mm a");
+      activityQueue.push(activity);
+    }
   });
   processQueue();
 };
@@ -95,15 +97,29 @@ var addToStream = function(activities) {
 // Render activities via jQuery templating
 //
 var processQueue = function() {
-  setInterval(function() {
+  var intervalId = setInterval(function() {
     var activity = activityQueue.shift();
     if (!_(activity).isUndefined()) {
       var column = $("div#rtColumn_content");
       $.tmpl("activity", activity).fadeIn(1500).prependTo(column);
       addToRecentActivities(activity);
+    } else {
+      clearInterval(intervalId);
     }
   }, 3500);
 };
+
+//
+// Determine whether the activity should be displayed for this user
+//
+var vetActivity = function(activity) {
+ var followingIds = _(store.get("following")).map(function(publisher) {
+    return publisher["id"];
+  });
+ return _(activity.publisher_ids).detect(function(publisherId) {
+   return _(followingIds).include(publisherId);
+ });
+}
 
 //
 // Determine the publisher (member of Congress) from publisher list
