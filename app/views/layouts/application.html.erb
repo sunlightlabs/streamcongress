@@ -110,6 +110,7 @@
     var allMembers = <%= all_members.inspect.html_safe %>;
     var allMemberIds = <%= all_member_ids.inspect.html_safe %>;
     var activityQueue = [];
+    var queueProcessing = false;
 
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-1265484-67']);
@@ -134,7 +135,7 @@
         <a class="date" href="#">${date}</a>
         {{if source_name == "twitter"}}
         <h3>${name} tweeted:</h3>
-        <p>${main_content}</p>
+        <p>{{html main_content}}</p>
         {{else source_name == "news"}}
         <h3>${name} was mentioned in &quot;${main_content}&quot;:</h3>
         <p>${secondary_content}</p>
