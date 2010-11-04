@@ -27,8 +27,24 @@ var loadStored = function() {
 
   var followingList = $('ul#following');
   _(store.get("following")).each(function(publisher) {
-    followingList.append('<li><a href="#">' + publisher["name"] + '</a><a class="delete" href="#">Delete</a><div class="clear"></div></li>');
+    followingList.append('<li><a href="#">' + publisher["name"] + '</a><a class="delete" href="#" data-id="' + publisher["id"] + '">Delete</a><div class="clear"></div></li>');
   });
+
+  $('ul#following li').mouseover(function() {
+    $(this).children('a.delete').show();
+  });
+  $('ul#following li').mouseleave(function() {
+    $(this).children('a.delete').hide();
+  });
+  $('ul#following li a.delete').click(function() {
+    var clicked = $(this);
+    var updatedList = _(store.get("following")).reject(function(publisher) {
+      return (publisher["id"] == clicked.data('id'));
+    });
+    store.set("following", updatedList);
+    clicked.parent().hide();
+  });
+
 
   var streamColumn = $("div#rtColumn_content");
   var mostRecentActivity = { '_id': 0 };
