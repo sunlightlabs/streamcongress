@@ -25,7 +25,7 @@ var gotLocation = function(loc) {
         following.push(memberLookup[legislator.bioguide_id]);
       });
       store.set("following", following);
-      loadFollowing();
+      loadStored();
       $('article#geolocationPrompt').hide();
     }
   });
