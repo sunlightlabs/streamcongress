@@ -125,3 +125,9 @@ footer { padding-top: 60px;}
 #footerNav li { float: left;}
 #footerNav { margin-bottom: 40px;}
 footer p { color: #bebbb8; padding-top: 17px;}
+
+.ac_results { padding: 0px; border: 1px solid black; background-color: white; overflow: hidden; z-index: 99999; }
+.ac_results ul { width: 100%; list-style-position: outside; list-style: none; padding: 0; margin: 0; }
+.ac_results li { margin: 0px; padding: 2px 5px; cursor: default; display: block; font-size: 12px; line-height: 16px; overflow: hidden; }
+.ac_odd { background-color: #eee; }
+.ac_over { background-color: #826556; color: white; }
