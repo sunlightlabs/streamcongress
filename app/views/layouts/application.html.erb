@@ -6,6 +6,7 @@
   <meta name="description" content="" />
   <title>Stream Congress</title>
   <link rel="stylesheet" href="/stylesheets/main.css" type="text/css" media="screen" />
+
   <!--[if IE 6]><link rel="stylesheet" href="buggy.css" type="text/css" media="screen" /><![endif]-->
   <!--[if IE 7]><link rel="stylesheet" href="buggy7.css" type="text/css" media="screen" /><![endif]-->
 </head>
@@ -70,7 +71,7 @@
           </form>
           <h4>Type in the name of a specific legislator</h4>
           <form action="#">
-            <input id="id_name" type="text" name="name"/>
+            <input id="memberSearch" type="text" name="name"/>
             <button class="addBtn" type="submit">
               <span>Add</span>
             </button>
@@ -109,6 +110,7 @@
     var groupIds = defaultFollows;
     var allMembers = <%= all_members.inspect.html_safe %>;
     var allMemberIds = <%= all_member_ids.inspect.html_safe %>;
+    var allMemberNames = <%= all_member_names.inspect.html_safe %>;
     var activityQueue = [];
     var queueProcessing = false;
 
@@ -154,6 +156,6 @@
     </article>
   </script>
 
-  <%= javascript_include_tag 'jquery.dateFormat', 'store', 'application', 'geolocation', 'underscore.min' %>
+  <%= javascript_include_tag 'jquery.autocomplete.min', 'jquery.dateFormat', 'store', 'application', 'geolocation', 'underscore.min' %>
 </body>
 </html>

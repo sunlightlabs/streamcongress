@@ -30,4 +30,10 @@ module ApplicationHelper
      end
   end
 
+  def all_member_names
+     Publisher.where(:publisher_type => "member").map do |member|
+       member.name.to_s
+     end
+  end
+
 end

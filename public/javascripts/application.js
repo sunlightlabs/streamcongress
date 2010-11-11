@@ -2,6 +2,10 @@ $(function() {
 
   $("#activityTemplate").template("activity");
 
+  $("input#memberSearch").autocomplete(allMemberNames, {  matchContains : true,
+                                                          cacheLength   : 50,
+                                                          max           : 20 });
+
   if (!signedIn && _(store.get("following")).isEmpty()) {
 
     var following = [];
