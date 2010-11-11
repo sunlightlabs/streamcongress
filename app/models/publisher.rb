@@ -9,6 +9,8 @@ class Publisher
   
   field :title
   field :party
+  field :state
+  field :district
   field :bioguide_id
   field :govtrack_id
   field :twitter_id
@@ -18,6 +20,7 @@ class Publisher
   index :publisher_type
   index :title
   index :party
+  index :state
   index :bioguide_id
   index :govtrack_id
   index :twitter_id
