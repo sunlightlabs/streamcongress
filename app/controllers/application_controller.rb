@@ -12,5 +12,5 @@ class ApplicationController < ActionController::Base
     end
     @subscriber = Subscriber.first(:conditions => { :id => session[:user_id] })
   end
-  
+
 end

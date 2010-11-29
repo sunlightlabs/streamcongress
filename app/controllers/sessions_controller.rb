@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
         :method => 'POST')
     head 401
   end
-  
+
   def create
     if openid = request.env[Rack::OpenID::RESPONSE]
       case openid.status
@@ -38,7 +38,7 @@ class SessionsController < ApplicationController
       redirect_to auth_path
     end
   end
-  
+
   def destroy
     session[:user_id] = nil
     redirect_to root_path

@@ -14,7 +14,7 @@ RSpec.configure do |config|
   config.include Mongoid::Matchers
 
   config.mock_with :rr
-    
+
   config.before(:suite) do
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.orm = "mongoid"

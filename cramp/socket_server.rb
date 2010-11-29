@@ -36,7 +36,7 @@ module SocketServer
                         to_json
       end
     end
-    
+
   end
 
   class LiveSocket < Cramp::Websocket
@@ -46,7 +46,7 @@ module SocketServer
     on_start :user_connected
     on_finish :user_left
     periodic_timer :check_activities, :every => 5
-    
+
     def user_connected
       @@users << self
     end
