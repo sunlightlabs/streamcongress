@@ -177,3 +177,6 @@ DEPENDENCIES
   thin
   twitter
   usher
+
+METADATA
+  version: 1.0.6
