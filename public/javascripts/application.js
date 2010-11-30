@@ -2,10 +2,21 @@ $(function() {
 
   $("#activityTemplate").template("activity");
 
+  // Set up the legislator search form
   $("input#memberSearch").autocomplete(allMemberNames, {  matchContains : true,
                                                           cacheLength   : 50,
                                                           max           : 20 });
+  $("button#memberSearch").click(function() {
+    var updatedList = store.get("following");
+    var $input = $("input#memberSearch");
+    updatedList.push(memberNameLookup[$input.attr("value")]);
+    $input.attr("value", '');
+    store.set("following", updatedList);
+    loadFollowing();
+    // TODO: Send a message to the websocket if logged in
+  });
 
+  // Set up the following list
   if (!signedIn && _(store.get("following")).isEmpty()) {
 
     var following = [];
@@ -19,21 +30,25 @@ $(function() {
   } else {
     $('span#following_tip').text("Loaded your saved follow list...");
     $('article#geolocationPrompt').hide();
+    loadFollowing();
     loadStored();
   }
 
 });
 
-//
-// Grab follow list and recent activities from local storage
-//
-var loadStored = function() {
 
-  var followingList = $('ul#following');
+//
+// Load the following list in the sidebar
+//
+
+var loadFollowing = function() {
+  var $followingList = $('ul#following');
+  $followingList.empty();
   _(store.get("following")).each(function(publisher) {
-    followingList.append('<li><a href="#">' + publisher["name"] + '</a><a class="delete" href="#" data-id="' + publisher["id"] + '">Delete</a><div class="clear"></div></li>');
+    $followingList.append('<li><a href="#">' + publisher["name"] + '</a><a class="delete" href="#" data-id="' + publisher["id"] + '">Delete</a><div class="clear"></div></li>');
   });
 
+  // Enable removal from following list
   $('ul#following li').mouseover(function() {
     $(this).children('a.delete').show();
   });
@@ -46,9 +61,15 @@ var loadStored = function() {
       return (publisher["id"] == clicked.data('id'));
     });
     store.set("following", updatedList);
+    // TODO: Send a message to the websocket if logged in
     clicked.parent().hide();
   });
+}
 
+//
+// Grab follow list and recent activities from local storage
+//
+var loadStored = function() {
 
   var streamColumn = $("div#rtColumn_content");
   var mostRecentActivity = { '_id': 0 };

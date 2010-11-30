@@ -31,9 +31,18 @@ module ApplicationHelper
   end
 
   def all_member_names
-     Publisher.where(:publisher_type => "member").map do |member|
-       member.name.to_s
-     end
+    Publisher.where(:publisher_type => "member").map do |member|
+      "#{member.name} (#{member.state}-#{member.district})"
+    end
+  end
+
+  def member_name_lookup
+    hash = Hash.new
+    Publisher.where(:publisher_type => "member").map do |member|
+      hash["#{member.name} (#{member.state}-#{member.district})"] = { "name" => "#{member.title}. #{member.name} (#{member.party})",
+                                                                      "id" => member.id.to_s }
+    end
+    hash
   end
 
 end
