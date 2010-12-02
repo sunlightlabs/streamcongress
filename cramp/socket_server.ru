@@ -49,10 +49,14 @@ module SocketServer
 
     def user_connected
       @@users << self
+      puts "New user!"
+      puts "Count at " + @@users.length.to_s
     end
 
     def user_left
       @@users.delete self
+      puts "User left------------------------------"
+      puts "Count at " + @@users.length.to_s
     end
 
     def check_activities
@@ -69,5 +73,5 @@ routes = Usher::Interface.for(:rack) do
   add('/backfill').to(SocketServer::BackfillSocket)
   add('/live').to(SocketServer::LiveSocket)
 end
-
-Rack::Handler::Thin.run routes, :Port => 8080
+run routes
+# thin start --max-persistent-conns 10000 -R cramp/socket_server.ru
