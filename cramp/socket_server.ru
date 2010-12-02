@@ -41,7 +41,6 @@ module SocketServer
 
   class LiveSocket < Cramp::Websocket
     @@users = Set.new
-    @@latest_activity = Activity.last
 
     on_start :user_connected
     on_finish :user_left
@@ -60,10 +59,12 @@ module SocketServer
     end
 
     def check_activities
-      new_activities = Activity.where(:_id.gt => @@latest_activity.id).
+      @latest_activity = Activity.new if @latest_activity.nil?
+      new_activities = Activity.where(:_id.gt => @latest_activity._id).
                                 desc(:_id)
-      @@latest_activity = new_activities.first unless new_activities.empty?
+      @latest_activity = new_activities.first unless new_activities.empty?
       render new_activities.to_json
+
     end
   end
 end
