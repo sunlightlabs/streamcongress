@@ -17,5 +17,9 @@ class MainController < ApplicationController
   def publisher
     @publisher = Publisher.where(:slug => params[:slug]).first
   end
-
+  
+  def activity
+    @activity = Activity.find(params[:id])
+  end
+  
 end

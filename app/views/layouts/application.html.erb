@@ -136,7 +136,7 @@
     <article>
       <img src="http://assets.sunlightfoundation.com/moc/100x125/${bioguide_id}.jpg" width="59px" />
       <div class="articleContent">
-        <a class="date" href="#">${date}</a>
+        <a class="date" href="/a/${_id}">${date}</a>
         {{if source_name == "twitter"}}
         <h3>${name} tweeted:</h3>
         <p>{{html main_content}}</p>
@@ -149,13 +149,57 @@
         <p>${secondary_content}</p>
         {{/if}}
         <ul>
-          <li><a href="#">0 comments</a></li>
+          <li><a href="/a/${_id}">0 comments</a></li>
           <li><a href="${source_url}" target="_blank">View Original</a></li>
+          <li><a href="/s/${source_slug}">Stream for ${name}</a></li>
         </ul>
         <div class="clear"></div>
       </div>
       <div class="clear"></div>
     </article>
+  </script>
+
+  <script id="commentsTemplate" type="text/x-jquery-tmpl">
+    <div id="comment">
+      <h4>Leave a comment</h4>
+      <ul>
+        <li>
+          <label>&nbsp;</label>
+          <textarea id="id_description" class="textarea" name="description"></textarea>
+        </li>
+        <li class="clear">
+          <button class="postBtn" type="submit">
+            <span>Post</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+    <div class="clear"></div>
+    <h4 id="commentTitle">Comments</h4>
+    <ol id="comments">
+      <li>
+        <span class="postNumber">1</span>
+        <div class="postContent">
+          <a class="commenterName">Name</a>
+          <div class="commentMetaData">
+            <span>September 10, 2010</span>
+            <span>3:30 am</span>
+          </div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ultrices, mi id molestie vestibulum, erat odio mollis est, lacinia tincidunt metus tellus quis erat. Curabitur lacinia gravida consectetur. Donec faucibus risus quis massa pharetra ornare ac at massa.</p>
+        </div>
+      </li>
+      <li id="lastComment">
+        <span class="postNumber">2</span>
+        <div class="postContent">
+          <a class="commenterName">Name</a>
+          <div class="commentMetaData">
+            <span>September 10, 2010</span>
+            <span>3:30 am</span>
+          </div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ultrices, mi id molestie vestibulum, erat odio mollis est, lacinia tincidunt metus tellus quis erat. Curabitur lacinia gravida consectetur. Donec faucibus risus quis massa pharetra ornare ac at massa.</p>
+        </div>
+      </li>
+    </ol>
   </script>
 
   <%= javascript_include_tag 'jquery.autocomplete.min', 'jquery.dateFormat', 'store', 'application', 'geolocation', 'underscore.min' %>

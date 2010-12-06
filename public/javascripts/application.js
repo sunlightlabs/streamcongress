@@ -33,6 +33,8 @@ $(function() {
     loadFollowing();
     if (currentPage == "home" || currentPage == "publisher") {
       loadStored();
+    } else if (currentPage == "activity") {
+      loadActivity();
     }
   }
 
@@ -92,6 +94,30 @@ var loadStored = function() {
 };
 
 //
+// Load activity with comments
+//
+var loadActivity = function() {
+  var streamColumn = $("div#rtColumn_content");
+
+  var memberLookup = {};
+  _(allMemberIds).each(function(tuple) {
+    memberLookup[tuple[0]] = { "name" : tuple[1], "bioguide_id" : tuple[2] };
+  });
+
+  publisherId = determinePublisher(activity["publisher_ids"]);
+  activity["name"] = memberLookup[publisherId]["name"];
+  activity["bioguide_id"] = memberLookup[publisherId]["bioguide_id"];
+  activity["source_slug"] = slugLookup[publisherId];
+  activity["date"] = $.format.date(new Date(activity["created_at"]), "MM.dd.yyyy hh:mm a");
+  var autolinkExpression = /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g;
+  activity["main_content"] = activity["main_content"].replace(autolinkExpression, '<a href="$1">$1</a> ');
+
+//  $.tmpl("activity", activity).appendTo(streamColumn);
+  $("#activityTemplate").tmpl(activity).appendTo(streamColumn);
+  $("#commentsTemplate").tmpl(activity).appendTo(streamColumn);
+};
+
+//
 // Backfill the stream as appropriate
 //
 var backfillStream = function(mostRecentActivity) {
@@ -137,6 +163,7 @@ var addToStream = function(activities) {
       publisherId = determinePublisher(activity.publisher_ids);
       activity["name"] = memberLookup[publisherId]["name"];
       activity["bioguide_id"] = memberLookup[publisherId]["bioguide_id"];
+      activity["source_slug"] = slugLookup[publisherId];
       activity["date"] = $.format.date(new Date(activity["created_at"]), "MM.dd.yyyy hh:mm a");
       var autolinkExpression = /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g;
       activity["main_content"] = activity["main_content"].replace(autolinkExpression, '<a href="$1">$1</a> ');
@@ -185,6 +212,7 @@ var vetActivity = function(activity) {
 // Determine the publisher (member of Congress) from publisher list
 //
 var determinePublisher = function(publisherIds) {
+  console.log(publisherIds);
   return _(publisherIds).reject(function(publisherId) {
     return _(groupIds).include(publisherId);
   }).shift();

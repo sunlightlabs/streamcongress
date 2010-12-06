@@ -110,7 +110,7 @@ div.scroll { -moz-border-radius: 3px; -webkit-border-radius: 3px; border: 2px so
 #comment { margin-top: 40px;}
 #comment label { width: 82px;}
 #comments li { border-bottom: 1px dotted #b1aaa9; margin-bottom: 20px; padding-bottom: 20px;}
-.postNumber { font-size: 900%; font-family: 'Typewriter', Georgia, "Times New Roman", Times, serif; display: block; float: left; width: 82px; line-height: 70px;}
+.postNumber { font-size: 400%; font-family: 'Typewriter', Georgia, "Times New Roman", Times, serif; display: block; float: left; width: 82px; line-height: 70px;}
 .postContent { float: left; width: 450px;}
 #comments #lastComment { border-bottom: none;}
 
