@@ -112,6 +112,7 @@
     var allMemberIds = <%= all_member_ids.inspect.html_safe %>;
     var allMemberNames = <%= all_member_names.inspect.html_safe %>;
     var memberNameLookup = <%= member_name_lookup.to_json.html_safe %>;
+    var slugLookup = <%= slug_lookup.to_json.html_safe %>;
     var activityQueue = [];
     var queueProcessing = false;
 

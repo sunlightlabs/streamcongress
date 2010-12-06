@@ -12,6 +12,7 @@ namespace :load do
                           :party => row["party"],
                           :state => row["state"],
                           :district => format_district(row["district"]),
+                          :slug => "#{common_name(row)} #{row['state']} #{format_district(row['district'])}".parameterize,
                           :bioguide_id => row["bioguide_id"],
                           :govtrack_id => row["govtrack_id"],
                           :twitter_id => row["twitter_id"],
@@ -27,7 +28,7 @@ namespace :load do
       member.update_attributes!(:minute_id => rand(60))
     end
   end
-
+  
   desc "Load state/district for legislators"
   task :legislator_state do
     FasterCSV.foreach(Rails.root + "data/legislators.csv", :headers => :first_row) do |row|
@@ -38,11 +39,23 @@ namespace :load do
     end
   end
 
+  desc "Set slugs"
+  task :slugs do
+    Publisher.all.each do |p|
+      if p.publisher_type == "member"
+        p.update_attributes!(:slug => "#{p.name} #{p.state} #{p.district}".parameterize)
+      else
+        p.update_attributes!(:slug => p.name.parameterize)
+      end
+    end
+  end
+
   desc "Load other publishers"
   task :other_publishers do
     YAML.load_file(Rails.root + "data/publishers.yml").each do |entry|
       publisher = entry[1]
       Publisher.create!(:name => publisher["name"],
+                        :slug => publisher["name"].parameterize,
                         :publisher_type => publisher["publisher_type"])
     end
   end

@@ -45,4 +45,12 @@ module ApplicationHelper
     hash
   end
 
+  def slug_lookup
+    hash = Hash.new
+    Publisher.all.map do |p|
+      hash[p.id.to_s] = p.slug
+    end
+    hash
+  end
+
 end

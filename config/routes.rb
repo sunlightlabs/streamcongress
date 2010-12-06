@@ -5,6 +5,8 @@ Streamcongress::Application.routes.draw do
   match 'auth' => 'sessions#new', :as => :auth
   match 'out' => 'sessions#destroy', :as => :out
 
+  match 's/:slug' => 'main#publisher'
+
   resource :session
 
 end

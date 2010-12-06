@@ -14,4 +14,8 @@ class MainController < ApplicationController
     end
   end
 
+  def publisher
+    @publisher = Publisher.where(:slug => params[:slug]).first
+  end
+
 end

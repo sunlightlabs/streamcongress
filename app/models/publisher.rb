@@ -11,6 +11,7 @@ class Publisher
   field :party
   field :state
   field :district
+  field :slug
   field :bioguide_id
   field :govtrack_id
   field :twitter_id
@@ -21,6 +22,7 @@ class Publisher
   index :title
   index :party
   index :state
+  index :slug
   index :bioguide_id
   index :govtrack_id
   index :twitter_id
@@ -33,5 +35,5 @@ class Publisher
   validates_presence_of :publisher_type
 
   validates_inclusion_of :publisher_type, :in => ["member", "group", "app"]
-
+  
 end
