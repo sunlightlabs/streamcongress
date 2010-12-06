@@ -1,0 +1,7 @@
+<% content_for :current_page, 'publisher' %>
+<h2 id="happeningTitle">Stream for <%= @publisher.name %></h2>
+
+<script type="text/javascript" charset="utf-8">
+  var publisherId = '<%= @publisher.id %>';
+  var publisherSlug = '<%= @publisher.slug %>';
+</script>

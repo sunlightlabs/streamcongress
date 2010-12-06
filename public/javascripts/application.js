@@ -31,7 +31,7 @@ $(function() {
     $('span#following_tip').text("Loaded your saved follow list...");
     $('article#geolocationPrompt').hide();
     loadFollowing();
-    if (currentPage == "home") {
+    if (currentPage == "home" || currentPage == "publisher") {
       loadStored();
     }
   }
@@ -76,8 +76,13 @@ var loadStored = function() {
   var streamColumn = $("div#rtColumn_content");
   var mostRecentActivity = { '_id': 0 };
 
-  if (!_(store.get("recentActivities")).isUndefined()) {
-    _(store.get("recentActivities")).each(function(activity) {
+  var activitiesKey = "recentActivities"
+  if (currentPage == "publisher") {
+    activitiesKey = publisherSlug + "Activities";
+  }
+
+  if (!_(store.get(activitiesKey)).isUndefined()) {
+    _(store.get(activitiesKey)).each(function(activity) {
       $.tmpl("activity", activity).prependTo(streamColumn);
       mostRecentActivity = activity;
     });
@@ -93,10 +98,13 @@ var backfillStream = function(mostRecentActivity) {
   var backfillSocket = new WebSocket("ws://" + socketDomain + ":8080/backfill");
   var recentId = mostRecentActivity['_id'];
   backfillSocket.onopen = function() {
-    var following_ids = _(store.get("following")).map(function(obj) {
+    var followingIds = _(store.get("following")).map(function(obj) {
       return obj['id'];
     });
-    requestObject = { 'since_id':recentId, 'following_ids':following_ids };
+    if (currentPage == "publisher") {
+      followingIds = [publisherId];
+    }
+    requestObject = { 'since_id':recentId, 'following_ids':followingIds };
     backfillSocket.send(JSON.stringify(requestObject));
   };
 
@@ -162,12 +170,15 @@ var processQueue = function() {
 // Determine whether the activity should be displayed for this user
 //
 var vetActivity = function(activity) {
- var followingIds = _(store.get("following")).map(function(publisher) {
+  var followingIds = _(store.get("following")).map(function(publisher) {
     return publisher["id"];
   });
- return _(activity.publisher_ids).detect(function(publisherId) {
-   return _(followingIds).include(publisherId);
- });
+  if (currentPage == "publisher") {
+    followingIds = [publisherId];
+  }
+  return _(activity.publisher_ids).detect(function(publisherId) {
+    return _(followingIds).include(publisherId);
+  });
 }
 
 //
@@ -183,7 +194,12 @@ var determinePublisher = function(publisherIds) {
 // Persist activities already displayed to user into local storage
 //
 var addToRecentActivities = function(activity) {
-  var recentActivities = store.get("recentActivities");
+  var activitiesKey = "recentActivities"
+  if (currentPage == "publisher") {
+    activitiesKey = publisherSlug + "Activities";
+  }
+  var recentActivities = store.get(activitiesKey);
+
   if (_(recentActivities).isUndefined()) {
     recentActivities = [];
   }
@@ -191,5 +207,5 @@ var addToRecentActivities = function(activity) {
   if (recentActivities.length > 20) {
    recentActivities.shift();
   }
-  store.set("recentActivities", recentActivities);
+  store.set(activitiesKey, recentActivities);
 };
