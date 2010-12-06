@@ -27,7 +27,7 @@ module SocketServer
       if (request["since_id"] == 0)
         render Activity.any_in(:publisher_ids => request["following_ids"]).
                         desc(:_id).
-                        limit(30).
+                        limit(20).
                         to_json
       else
         render Activity.where(:_id.gt => BSON.ObjectId(request["since_id"])).
