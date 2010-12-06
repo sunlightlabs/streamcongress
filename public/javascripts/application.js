@@ -31,7 +31,9 @@ $(function() {
     $('span#following_tip').text("Loaded your saved follow list...");
     $('article#geolocationPrompt').hide();
     loadFollowing();
-    loadStored();
+    if (currentPage == "home") {
+      loadStored();
+    }
   }
 
 });

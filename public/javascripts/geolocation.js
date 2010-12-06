@@ -26,7 +26,9 @@ var gotLocation = function(loc) {
       });
       store.set("following", following);
       loadFollowing();
-      loadStored();
+      if (currentPage == "home") {
+        loadStored();
+      }
       $('article#geolocationPrompt').hide();
     }
   });

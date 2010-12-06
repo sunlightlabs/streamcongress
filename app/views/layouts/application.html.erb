@@ -102,6 +102,7 @@
   </div>
   <script type="text/javascript">
 
+    var currentPage = '<%= yield :current_page %>';
     var signedIn = <%= signed_in? %>;
     var sunlightKey = 'eb9a0cebe6e940cf827ca2592b11fc3f'
     var socketDomain = '<%= Rails.env == "production" ? "streamcongress.com" : "localhost" %>';
