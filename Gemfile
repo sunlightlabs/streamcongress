@@ -10,6 +10,7 @@ gem "twitter", "~> 0.9.0"
 gem "httparty"
 gem "ruby-openid"
 gem "rack-openid"
+gem "user-agent"
 
 gem "cramp", :git => "git://github.com/indrekj/cramp.git"
 gem "usher"
