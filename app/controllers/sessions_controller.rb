@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
         ax = OpenID::AX::FetchResponse.from_success_response(openid)
         if user = Subscriber.first(:conditions => { :identifier_url => openid.display_identifier })
           session[:user_id] = user.id
-          redirect_to root_path
+          redirect_to :back
         else
           display_name = ax.get_single('http://axschema.org/namePerson/first').to_s + " " + ax.get_single('http://axschema.org/namePerson/last').to_s
           display_name.strip!
@@ -41,6 +41,6 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_path
+    redirect_to :back
   end
 end
