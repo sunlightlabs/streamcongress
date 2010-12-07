@@ -112,8 +112,6 @@ var loadActivity = function() {
   activity["time"] = $.format.date(new Date(activity["created_at"]), "hh:mm a");
   var autolinkExpression = /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g;
   activity["main_content"] = activity["main_content"].replace(autolinkExpression, '<a href="$1">$1</a> ');
-
-//  $.tmpl("activity", activity).appendTo(streamColumn);
   $("#activityTemplate").tmpl(activity).appendTo(streamColumn);
   $("#commentsTemplate").tmpl(activity).appendTo(streamColumn);
 };
