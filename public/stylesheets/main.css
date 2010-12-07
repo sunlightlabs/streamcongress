@@ -60,6 +60,7 @@ h4 { color: #e0dcd9; font-size: 130%; margin-bottom: 15px;}
 #rtColumn h4 { color: #5D5654;}
 #commentTitle { margin-top: 40px; }
 #commentTitle, #comment h4 { margin-left: 82px;}
+#comment h4 { font-family: 'Typewriter', Georgia, "Times New Roman", Times, serif; }
 
 #congressSessions { margin-left: -25px; color: #2C2624; background: url(/images/bg_session.png) top left no-repeat; margin-bottom: 20px; padding: 28px 0 0 82px; height: 91px; font-family: Georgia, "Times New Roman", Times, serif;}
 
@@ -125,7 +126,7 @@ div.scroll { -moz-border-radius: 3px; -webkit-border-radius: 3px; border: 2px so
 #footerNav .last, #headerNav .last { border-left: 1px solid #605e5b; padding-left: 30px; margin-left: 30px;}
 #footerNav { width: 200px; margin: 0 auto;}
 
-#footerWrapper { background: url(/images/footer_wrapper.jpg) center top repeat-x; height: 189px; margin-top: 180px;}
+#footerWrapper { background: url(/images/footer_wrapper.jpg) center top repeat-x; height: 189px; margin-top: 80px;}
 footer { padding-top: 42px;}
 #footerNav li { float: left;}
 #footerNav { margin-bottom: 40px;}
