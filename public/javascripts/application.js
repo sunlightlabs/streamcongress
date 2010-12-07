@@ -85,7 +85,13 @@ var loadStored = function() {
 
   if (!_(store.get(activitiesKey)).isUndefined()) {
     _(store.get(activitiesKey)).each(function(activity) {
-      $.tmpl("activity", activity).prependTo(streamColumn);
+      if (currentPage == "home") {
+        var column = $("div#rtColumn_content");
+        $.tmpl("activity", activity).fadeIn(1500).prependTo(column);
+      } else if (currentPage == "publisher") {
+        var $vcard = $("div#vcard");
+        $.tmpl("activity", activity).fadeIn(1500).insertAfter($vcard);
+      }
       mostRecentActivity = activity;
     });
   }
@@ -183,8 +189,14 @@ var processQueue = function() {
     queueProcessing = true;
     var activity = activityQueue.shift();
     if (!_(activity).isUndefined()) {
-      var column = $("div#rtColumn_content");
-      $.tmpl("activity", activity).fadeIn(1500).prependTo(column);
+      if (currentPage == "home") {
+        var column = $("div#rtColumn_content");
+        $.tmpl("activity", activity).fadeIn(1500).prependTo(column);
+      } else if (currentPage == "publisher") {
+        var $vcard = $("div#vcard");
+        $.tmpl("activity", activity).fadeIn(1500).insertAfter($vcard);
+      }
+
       addToRecentActivities(activity);
     } else {
       clearInterval(intervalId);
