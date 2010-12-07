@@ -30,7 +30,7 @@ p { margin-bottom: 1em;}
 .tip, .commentMetaData { color: #9f9b97; font-family: Georgia, "Times New Roman", Times, serif; font-style: oblique; font-size: 95%; line-height: 18px; margin-bottom: 30px; display: block;}
 .commentMetaData { margin-bottom: 10px;}
 
-#pageMain { background: url(/images/bg_header2.jpg) top center no-repeat; display: block; height: 380px;}
+#pageMain { background: url(/images/bg_header2.jpg) center top no-repeat; display: block; height: 380px; width: 960px; margin: 0 auto;}
 header, #mainContent, footer { width: 940px; margin: 0 auto; display: block; padding: 0 10px;}
 
 header { height: 205px; margin-bottom: 60px;}
@@ -40,8 +40,8 @@ header { height: 205px; margin-bottom: 60px;}
 h1 { width: 266px; height: 68px; padding-top: 55px; margin-bottom: 35px;}
 h1 a { display: block; text-indent: -9999em; width: 266px; height: 68px; background: url(/images/logo.png) top left no-repeat;}
 
-#ltColumn { float: left; width: 292px; margin-right: 29px;}
-#rtColumn { float: left; width: 569px; background-color: #fafdf6; padding: 0 25px 0 25px; padding-bottom: 80px; margin-top: 115px;}
+#ltColumn { float: left; width: 291px; margin-right: 29px;}
+#rtColumn { float: left; width: 570px; background-color: #fafdf6; padding: 0 25px 0 25px; padding-bottom: 80px; margin-top: 115px;}
 #rtColumn_content { margin-top: -125px;}
 
 h2 { font-family: 'Typewriter', Georgia, "Times New Roman", Times, serif; font-size: 190%; color: #fdfcfb; margin-bottom: 20px; line-height: 26px;}
