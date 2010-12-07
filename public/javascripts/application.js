@@ -108,7 +108,8 @@ var loadActivity = function() {
   activity["name"] = memberLookup[publisherId]["name"];
   activity["bioguide_id"] = memberLookup[publisherId]["bioguide_id"];
   activity["source_slug"] = slugLookup[publisherId];
-  activity["date"] = $.format.date(new Date(activity["created_at"]), "MM.dd.yyyy hh:mm a");
+  activity["date"] = $.format.date(new Date(activity["created_at"]), "MM.dd.yyyy");
+  activity["time"] = $.format.date(new Date(activity["created_at"]), "hh:mm a");
   var autolinkExpression = /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g;
   activity["main_content"] = activity["main_content"].replace(autolinkExpression, '<a href="$1">$1</a> ');
 
@@ -164,7 +165,8 @@ var addToStream = function(activities) {
       activity["name"] = memberLookup[publisherId]["name"];
       activity["bioguide_id"] = memberLookup[publisherId]["bioguide_id"];
       activity["source_slug"] = slugLookup[publisherId];
-      activity["date"] = $.format.date(new Date(activity["created_at"]), "MM.dd.yyyy hh:mm a");
+      activity["date"] = $.format.date(new Date(activity["created_at"]), "MM.dd.yyyy");
+      activity["time"] = $.format.date(new Date(activity["created_at"]), "hh:mm a");
       var autolinkExpression = /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g;
       activity["main_content"] = activity["main_content"].replace(autolinkExpression, '<a href="$1">$1</a> ');
       activityQueue.push(activity);

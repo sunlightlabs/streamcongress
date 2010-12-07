@@ -136,7 +136,10 @@
     <article>
       <img src="http://assets.sunlightfoundation.com/moc/100x125/${bioguide_id}.jpg" width="59px" />
       <div class="articleContent">
-        <a class="date" href="/a/${_id}">${date}</a>
+        <div class="date">
+            <a href="/a/${_id}">${date}</a>
+            <span>${time}</span>
+        </div>
         {{if source_name == "twitter"}}
         <h3>${name} tweeted:</h3>
         <p>{{html main_content}}</p>
@@ -187,6 +190,7 @@
           </div>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ultrices, mi id molestie vestibulum, erat odio mollis est, lacinia tincidunt metus tellus quis erat. Curabitur lacinia gravida consectetur. Donec faucibus risus quis massa pharetra ornare ac at massa.</p>
         </div>
+        <div class="clear"></div>
       </li>
       <li id="lastComment">
         <span class="postNumber">2</span>
@@ -198,6 +202,7 @@
           </div>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ultrices, mi id molestie vestibulum, erat odio mollis est, lacinia tincidunt metus tellus quis erat. Curabitur lacinia gravida consectetur. Donec faucibus risus quis massa pharetra ornare ac at massa.</p>
         </div>
+        <div class="clear"></div>
       </li>
     </ol>
   </script>
