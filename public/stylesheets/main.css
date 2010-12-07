@@ -137,14 +137,14 @@ footer p { color: #bebbb8; padding-top: 17px;}
 .ac_over { background-color: #d2b702; color: white; }
 
 #mainVcard { float: left; width: 300px; margin-right: 25px;}
-#vcard { background-color: #f2f1ec; padding: 10px 20px; -moz-border-radius: 3px; -webkit-border-radius: 3px; border: 1px solid #e6e4dc;}
+#vcard { background-color: #f2f1ec; margin: -15px 0 20px 0; padding: 10px 20px; -moz-border-radius: 3px; -webkit-border-radius: 3px; border: 1px solid #e6e4dc;}
 #vcard h2 { margin-bottom: 10px;}
 .url, .locality { margin-left: 10px;}
 #buttons { float: right; width: 150px;}
 #buttons a { text-indent: -9999em; display: block; width: 28px; height: 28px; float: right; margin-left: 5px;}
 .twitter { background: url(/images/social_icons.png) top left no-repeat;}
 .twitter { background: url(/images/social_icons.png) bottom left no-repeat;}
-.youtube { background: url(/images/social_icons.png) top -28px no-repeat;}
-.youtube { background: url(/images/social_icons.png) bottom -28px no-repeat;}
-.opencongress { background: url(/images/social_icons.png) top -56px no-repeat;}
-.opencongress { background: url(/images/social_icons.png) bottom -56px no-repeat;}
+.opencongress { background: url(/images/social_icons.png) top -28px no-repeat;}
+.opencongress { background: url(/images/social_icons.png) bottom -28px no-repeat;}
+.youtube { background: url(/images/social_icons.png) top -56px no-repeat;}
+.youtube { background: url(/images/social_icons.png) bottom -56px no-repeat;}
