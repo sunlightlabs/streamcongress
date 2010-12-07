@@ -104,6 +104,7 @@
 
     var currentPage = '<%= yield :current_page %>';
     var signedIn = <%= signed_in? %>;
+    var userName = '<%= current_user.display_name if signed_in? %>';
     var sunlightKey = 'eb9a0cebe6e940cf827ca2592b11fc3f'
     var socketDomain = '<%= Rails.env == "production" ? "streamcongress.com" : "localhost" %>';
     var defaultFollows = <%= default_follows.inspect.html_safe %>;
@@ -164,7 +165,11 @@
 
   <script id="commentsTemplate" type="text/x-jquery-tmpl">
     <div id="comment">
-      <h4>Leave a comment</h4>
+      {{if !signedIn}}
+        <h4>To leave a comment, please <a href="/auth">sign in</a>.</h4>
+      {{else}}
+      <h4>Leave a comment (as ${userName})</h4>
+      <form method="post" action="/a/${_id}/comment">
       <ul>
         <li>
           <label>&nbsp;</label>
@@ -176,6 +181,8 @@
           </button>
         </li>
       </ul>
+      </form>
+      {{/if}}
     </div>
     <div class="clear"></div>
     <h4 id="commentTitle">Comments</h4>
