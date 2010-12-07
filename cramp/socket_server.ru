@@ -75,4 +75,4 @@ routes = Usher::Interface.for(:rack) do
   add('/live').to(SocketServer::LiveSocket)
 end
 run routes
-# thin start --max-persistent-conns 10000 -R cramp/socket_server.ru
+# thin start --max-persistent-conns 10000 -e production -p 8080 -R cramp/socket_server.ru
