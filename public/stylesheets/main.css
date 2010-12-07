@@ -41,8 +41,9 @@ h1 { width: 266px; height: 68px; padding-top: 55px; margin-bottom: 35px;}
 h1 a { display: block; text-indent: -9999em; width: 266px; height: 68px; background: url(/images/logo.png) top left no-repeat;}
 
 #ltColumn { float: left; width: 291px; margin-right: 29px;}
-#rtColumn { float: left; width: 570px; background-color: #fafdf6; padding: 0 25px 0 25px; padding-bottom: 80px; margin-top: 115px;}
+#rtColumn { float: left; width: 570px; padding: 0 25px 20px 25px; margin-top: 115px; background-color: #fafdf6;}
 #rtColumn_content { margin-top: -125px;}
+#rtColumnFooter { background: url(/images/footer_bottom.png) bottom left no-repeat; width: 744px; height: 128px; position: relative; left: 320px;}
 
 h2 { font-family: 'Typewriter', Georgia, "Times New Roman", Times, serif; font-size: 190%; color: #fdfcfb; margin-bottom: 20px; line-height: 26px;}
 h2.withTip { margin-bottom: 15px;}
@@ -124,7 +125,7 @@ div.scroll { -moz-border-radius: 3px; -webkit-border-radius: 3px; border: 2px so
 #footerNav .last, #headerNav .last { border-left: 1px solid #605e5b; padding-left: 30px; margin-left: 30px;}
 #footerNav { width: 200px; margin: 0 auto;}
 
-#footerWrapper { background: url(/images/footer_wrapper.jpg) center top repeat-x; height: 189px; margin-top: 20px;}
+#footerWrapper { background: url(/images/footer_wrapper.jpg) center top repeat-x; height: 189px; margin-top: 180px;}
 footer { padding-top: 42px;}
 #footerNav li { float: left;}
 #footerNav { margin-bottom: 40px;}
