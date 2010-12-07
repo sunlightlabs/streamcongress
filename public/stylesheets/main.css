@@ -43,7 +43,7 @@ h1 a { display: block; text-indent: -9999em; width: 266px; height: 68px; backgro
 #ltColumn { float: left; width: 291px; margin-right: 29px;}
 #rtColumn { float: left; width: 570px; padding: 0 25px 20px 25px; margin-top: 115px; background-color: #fafdf6;}
 #rtColumn_content { margin-top: -125px;}
-#rtColumnFooter { background: url(/images/footer_bottom.png) bottom left no-repeat; width: 744px; height: 128px; position: relative; left: 320px;}
+#rtColumnFooter { float: left; background: url(/images/footer_bottom.png) bottom left no-repeat; width: 744px; height: 128px; position: relative; left: -25px; top: 55px;}
 
 h2 { font-family: 'Typewriter', Georgia, "Times New Roman", Times, serif; font-size: 190%; color: #fdfcfb; margin-bottom: 20px; line-height: 26px;}
 h2.withTip { margin-bottom: 15px;}
