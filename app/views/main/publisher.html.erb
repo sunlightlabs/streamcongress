@@ -1,6 +1,23 @@
 <% content_for :current_page, 'publisher' %>
-<h2 id="happeningTitle">Stream for <%= @publisher.name %></h2>
-
+<div id="vcard">
+  <h2>Stream for <%= @publisher.name %></h2>
+  <div id="mainVcard">
+    <div class="adr">
+        <span class="street-address">1818 N. Street NW</span>
+        <span class="locality">Washington</span>
+        <abbr class="region" title="District of Columbia">DC</abbr>
+        <span class="postal-code">22111</span>
+    </div>	
+    <span class="tel">555-645-1273</span>
+    <span class="url"><a href="#">Website</a></span>
+  </div>
+  <div id="buttons">
+      <a class="twitter" title="Twitter" href="#">Twitter</a>
+      <a class="youtube" title="YouTube" href="#">youTube</a>
+      <a class="opencongress" title="Open Congress" href="#">Open Congress</a>
+  </div>
+  <div class="clear"></div>
+</div>
 <script type="text/javascript" charset="utf-8">
   var publisherId = '<%= @publisher.id %>';
   var publisherSlug = '<%= @publisher.slug %>';
