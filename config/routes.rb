@@ -9,6 +9,7 @@ Streamcongress::Application.routes.draw do
 
   match 's/:slug' => 'main#publisher', :as => :publisher
   match 'a/:id' => 'main#activity', :as => :activity
+  match 'a/:id/comment' => 'main#comment', :as => :comment
   
   resource :session
 

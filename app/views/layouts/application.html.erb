@@ -84,7 +84,7 @@
         <div id="rtColumnFooter"></div>
       </div>
       <div class="clear"></div>
-      
+
     </div>
   </div>
   <div class="clear"></div>
@@ -156,7 +156,11 @@
         <p>${secondary_content}</p>
         {{/if}}
         <ul>
+          {{if comments}}
+          <li><a href="/a/${_id}">${comments.length} comments</a></li>
+          {{else}}
           <li><a href="/a/${_id}">0 comments</a></li>
+          {{/if}}
           <li><a href="${source_url}" target="_blank">View Original</a></li>
           <li><a href="/s/${source_slug}">Stream for ${name}</a></li>
         </ul>
@@ -166,17 +170,18 @@
     </article>
   </script>
 
+  <% if @activity %>
   <script id="commentsTemplate" type="text/x-jquery-tmpl">
     <div id="comment">
       {{if !signedIn}}
         <h4>To leave a comment, please <a href="/auth">sign in</a>.</h4>
       {{else}}
       <h4>Leave a comment (as ${userName})</h4>
-      <form method="post" action="/a/${_id}/comment">
+      <%= form_tag(comment_url(@activity.id), :method => :post) %>
       <ul>
         <li>
           <label>&nbsp;</label>
-          <textarea id="id_description" class="textarea" name="description"></textarea>
+          <textarea id="id_description" class="textarea" name="body"></textarea>
         </li>
         <li class="clear">
           <button class="postBtn" type="submit">
@@ -188,34 +193,28 @@
       {{/if}}
     </div>
     <div class="clear"></div>
-    <!--<h4 id="commentTitle">Comments</h4>
+    {{if comments}}
+    <h4 id="commentTitle">Comments</h4>
     <ol id="comments">
+
+    {{each comments}}
     <li>
-      <span class="postNumber">1</span>
+      <span class="postNumber">${$index+1}</span>
       <div class="postContent">
-        <a class="commenterName">Name</a>
+        <a class="commenterName">${$value.display_name}</a>
         <div class="commentMetaData">
-          <span>September 10, 2010</span>
-          <span>3:30 am</span>
+          <span>${$.format.date(new Date($value.created_at), "MM.dd.yyyy")}</span>
+          <span>${$.format.date(new Date($value.created_at), "hh:mm a")}</span>
         </div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ultrices, mi id molestie vestibulum, erat odio mollis est, lacinia tincidunt metus tellus quis erat. Curabitur lacinia gravida consectetur. Donec faucibus risus quis massa pharetra ornare ac at massa.</p>
+        <p>${$value.body}</p>
       </div>
       <div class="clear"></div>
     </li>
-    <li id="lastComment">
-      <span class="postNumber">2</span>
-      <div class="postContent">
-        <a class="commenterName">Name</a>
-        <div class="commentMetaData">
-          <span>September 10, 2010</span>
-          <span>3:30 am</span>
-        </div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ultrices, mi id molestie vestibulum, erat odio mollis est, lacinia tincidunt metus tellus quis erat. Curabitur lacinia gravida consectetur. Donec faucibus risus quis massa pharetra ornare ac at massa.</p>
-      </div>
-      <div class="clear"></div>
-    </li>
-    </ol>-->
+    {{/each}}
+    </ol>
+    {{/if}}
   </script>
+  <% end %>
 
   <%= javascript_include_tag 'jquery.autocomplete.min', 'jquery.dateFormat', 'store', 'application', 'geolocation', 'underscore.min' %>
 </body>

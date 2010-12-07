@@ -1,6 +1,6 @@
 class MainController < ApplicationController
 
-  before_filter :ensure_signed_in, :only => [:settings]
+  before_filter :ensure_signed_in, :only => [:settings, :comment]
   before_filter :user_agent_check, :except => [:chrome]
 
   def index
@@ -21,6 +21,15 @@ class MainController < ApplicationController
   
   def activity
     @activity = Activity.find(params[:id])
+  end
+  
+  def comment
+    @activity = Activity.find(params[:id])
+    @activity.comments.create(:body => params[:body],
+                              :subscriber_id => @subscriber.id,
+                              :display_name => @subscriber.display_name)
+    @activity.save
+    redirect_to :back
   end
   
   def user_agent_check
