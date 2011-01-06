@@ -16,6 +16,7 @@ class Publisher
   field :govtrack_id
   field :twitter_id
   field :youtube_id
+  field :in_office, :type => Boolean
   field :minute_id, :type => Integer
 
   index :publisher_type
@@ -27,6 +28,7 @@ class Publisher
   index :govtrack_id
   index :twitter_id
   index :youtube_id
+  index :in_office
   index :minute_id
 
   referenced_in :activity

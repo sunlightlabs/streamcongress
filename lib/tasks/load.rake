@@ -3,7 +3,23 @@ namespace :load do
   desc "Load all legislators"
   task :legislators do
     FasterCSV.foreach(Rails.root + "data/legislators.csv", :headers => :first_row) do |row|
-      if row["in_office"] == '1'
+
+      # update existing
+      if legislator = Publisher.first(:conditions => {:bioguide_id => row["bioguide_id"]})
+        legislator.update_attributes!(:name => common_name(row),
+                                      :description => "#{row["party"]}-#{row["state"]}",
+                                      :title => row["title"],
+                                      :party => row["party"],
+                                      :state => row["state"],
+                                      :district => format_district(row["district"]),
+                                      :slug => "#{common_name(row)} #{row['state']} #{format_district(row['district'])}".parameterize,
+                                      :bioguide_id => row["bioguide_id"],
+                                      :govtrack_id => row["govtrack_id"],
+                                      :twitter_id => row["twitter_id"],
+                                      :youtube_id => youtube_id(row["youtube_url"]),
+                                      :in_office => row["in_office"] == '1' ? true : false)
+
+      elsif row["in_office"] == '1' # create new
 
         Publisher.create!(:name => common_name(row),
                           :publisher_type => "member",
@@ -17,6 +33,7 @@ namespace :load do
                           :govtrack_id => row["govtrack_id"],
                           :twitter_id => row["twitter_id"],
                           :youtube_id => youtube_id(row["youtube_url"]),
+                          :in_office => row["in_office"] == '1' ? true : false,
                           :minute_id => rand(60))
       end
     end
@@ -28,7 +45,7 @@ namespace :load do
       member.update_attributes!(:minute_id => rand(60))
     end
   end
-  
+
   desc "Load state/district for legislators"
   task :legislator_state do
     FasterCSV.foreach(Rails.root + "data/legislators.csv", :headers => :first_row) do |row|
