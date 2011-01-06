@@ -37,5 +37,6 @@ class Publisher
   validates_presence_of :publisher_type
 
   validates_inclusion_of :publisher_type, :in => ["member", "group", "app"]
-  
+
+  scope :active_members, :where => {:publisher_type => "member", :in_office => "true"}
 end
