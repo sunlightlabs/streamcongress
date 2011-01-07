@@ -47,7 +47,10 @@ module ApplicationHelper
 
   def slug_lookup
     hash = Hash.new
-    Publisher.all.map do |p|
+    Publisher.active_members.map do |p|
+      hash[p.id.to_s] = p.slug
+    end
+    Publisher.where(:publisher_type => "group").map do |p|
       hash[p.id.to_s] = p.slug
     end
     hash

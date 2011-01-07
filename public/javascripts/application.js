@@ -28,6 +28,11 @@ $(function() {
     navigator.geolocation.getCurrentPosition(gotLocation);
 
   } else {
+    // clean out following list
+    var cleanFollowing = _(store.get("following")).reject(function(publisher) {
+      return _.isUndefined(slugLookup[publisher["id"]]);
+    });
+    store.set("following", cleanFollowing);
     $('span#following_tip').text("Loaded your saved follow list...");
     $('article#geolocationPrompt').hide();
     loadFollowing();
