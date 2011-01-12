@@ -119,6 +119,7 @@ var loadActivity = function() {
   activity["name"] = memberLookup[publisherId]["name"];
   activity["bioguide_id"] = memberLookup[publisherId]["bioguide_id"];
   activity["source_slug"] = slugLookup[publisherId];
+  activity["created_at"] = activity["created_at"].substring(0,19);
   activity["date"] = $.format.date(new Date(activity["created_at"]), "MM.dd.yyyy");
   activity["time"] = $.format.date(new Date(activity["created_at"]), "hh:mm a");
   var autolinkExpression = /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g;
@@ -229,7 +230,6 @@ var vetActivity = function(activity) {
 // Determine the publisher (member of Congress) from publisher list
 //
 var determinePublisher = function(publisherIds) {
-  console.log(publisherIds);
   return _(publisherIds).reject(function(publisherId) {
     return _(groupIds).include(publisherId);
   }).shift();
