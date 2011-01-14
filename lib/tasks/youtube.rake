@@ -14,7 +14,7 @@ namespace :fetch do
   desc "Load recent YouTube videos"
   task :videos do
 
-    Publisher.all(:conditions => {:minute_id => Time.now.min}).each do |member|
+    Publisher.active_members.where(:minute_id => Time.now.min).each do |member|
       if member.youtube_id
         videos = YouTube.latest_videos(member.youtube_id).parsed_response["data"]["items"]
         videos.each do |video|

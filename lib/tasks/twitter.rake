@@ -15,13 +15,13 @@ namespace :fetch do
     else
       last_id = 0
     end
-    
+
     senate_tweets = Publisher.first(:conditions => {:name => "Senate Tweets"})
     house_tweets = Publisher.first(:conditions => {:name => "House Tweets"})
-    
+
     client.friends_timeline(:count => 200, :since => last_id).each  do |tweet|
       unless Activity.first(:conditions => {:source_name => "twitter", :source_id => tweet.id})
-        if publisher = Publisher.first(:conditions => {:twitter_id => tweet.user.screen_name})
+        if publisher = Publisher.first(:conditions => {:twitter_id => tweet.user.screen_name, :in_office => true})
 
           tweetstream = publisher.title == 'Sen' ? senate_tweets : house_tweets
           Activity.create!(:main_content => tweet.text,
