@@ -172,15 +172,17 @@ var addToStream = function(activities) {
   _(activities).each(function(activity) {
     if (vetActivity(activity)) {
       publisherId = determinePublisher(activity.publisher_ids);
-      activity["name"] = memberLookup[publisherId]["name"];
-      activity["bioguide_id"] = memberLookup[publisherId]["bioguide_id"];
-      activity["source_slug"] = slugLookup[publisherId];
-      activity["created_at"] = activity["created_at"].substring(0,19);
-      activity["date"] = $.format.date(new Date(activity["created_at"]), "MM.dd.yyyy");
-      activity["time"] = $.format.date(new Date(activity["created_at"]), "hh:mm a");
-      var autolinkExpression = /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g;
-      activity["main_content"] = activity["main_content"].replace(autolinkExpression, '<a href="$1">$1</a> ');
-      activityQueue.push(activity);
+      if (!_.isUndefined(memberLookup[publisherId])) {
+        activity["name"] = memberLookup[publisherId]["name"];
+        activity["bioguide_id"] = memberLookup[publisherId]["bioguide_id"];
+        activity["source_slug"] = slugLookup[publisherId];
+        activity["created_at"] = activity["created_at"].substring(0,19);
+        activity["date"] = $.format.date(new Date(activity["created_at"]), "MM.dd.yyyy");
+        activity["time"] = $.format.date(new Date(activity["created_at"]), "hh:mm a");
+        var autolinkExpression = /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g;
+        activity["main_content"] = activity["main_content"].replace(autolinkExpression, '<a href="$1">$1</a> ');
+        activityQueue.push(activity);
+      }
     }
   });
   if (activityQueue.length > 0 && !queueProcessing) {
@@ -213,7 +215,7 @@ var processQueue = function() {
 };
 
 //
-// Determine whether the activity should be displayed for this user
+// Determine w)ether the activity should be displayed for this user
 //
 var vetActivity = function(activity) {
   var followingIds = _(store.get("following")).map(function(publisher) {
