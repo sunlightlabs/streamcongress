@@ -2,6 +2,10 @@ var loadFollowing, loadStored, loadActivity, backfillStream, addToStream, proces
 
 $(function() {
 
+  if (_.isUndefined(store.get('dbVersion'))) {
+    store.set('dbVersion', 1);
+  }
+
   $("#activityTemplate").template("activity");
 
   // Set up the legislator search form
