@@ -21,7 +21,7 @@ $(function() {
 
     var following = [];
     _(defaultFollows).each(function(pair) {
-      following.push({"name": pair[0], "id": pair[1] })
+      following.push({"name": pair[0], "id": pair[1] });
     });
     store.set("following", following);
 
@@ -83,7 +83,7 @@ var loadStored = function() {
   var streamColumn = $("div#rtColumn_content");
   var mostRecentActivity = { '_id': 0 };
 
-  var activitiesKey = "recentActivities"
+  var activitiesKey = "recentActivities";
   if (currentPage == "publisher") {
     activitiesKey = publisherSlug + "Activities";
   }
@@ -119,7 +119,7 @@ var loadActivity = function() {
   activity["name"] = memberLookup[publisherId]["name"];
   activity["bioguide_id"] = memberLookup[publisherId]["bioguide_id"];
   activity["source_slug"] = slugLookup[publisherId];
-  activity["created_at"] = activity["created_at"].substring(0,19) + " UTC";
+  //activity["created_at"] = activity["created_at"].substring(0,19) + " UTC";
   activity["date"] = $.format.date(new Date(activity["created_at"]), "MM.dd.yyyy");
   activity["time"] = $.format.date(new Date(activity["created_at"]), "hh:mm a");
   var autolinkExpression = /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g;
@@ -176,7 +176,7 @@ var addToStream = function(activities) {
         activity["name"] = memberLookup[publisherId]["name"];
         activity["bioguide_id"] = memberLookup[publisherId]["bioguide_id"];
         activity["source_slug"] = slugLookup[publisherId];
-        activity["created_at"] = activity["created_at"].substring(0,19) + " UTC";
+        //activity["created_at"] = activity["created_at"].substring(0,19) + " UTC";
         activity["date"] = $.format.date(new Date(activity["created_at"]), "MM.dd.yyyy");
         activity["time"] = $.format.date(new Date(activity["created_at"]), "hh:mm a");
         var autolinkExpression = /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g;
