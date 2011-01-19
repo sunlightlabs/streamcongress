@@ -1,7 +1,7 @@
 class MainController < ApplicationController
 
   before_filter :ensure_signed_in, :only => [:settings, :comment]
-  before_filter :user_agent_check, :except => [:chrome]
+  #before_filter :user_agent_check, :except => [:chrome]
 
   def index
 
