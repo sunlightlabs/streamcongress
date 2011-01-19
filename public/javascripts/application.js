@@ -1,3 +1,5 @@
+var loadFollowing, loadStored, loadActivity, backfillStream, liveStream, addToStream, processQueue, vetActivity, determinePublisher, addToRecentActivities;
+
 $(function() {
 
   $("#activityTemplate").template("activity");
@@ -30,7 +32,7 @@ $(function() {
   } else {
     // clean out following list
     var cleanFollowing = _(store.get("following")).reject(function(publisher) {
-      return _.isUndefined(slugLookup[publisher["id"]]);
+      return _.isUndefined(slugLookup[publisher.id]);
     });
     store.set("following", cleanFollowing);
     $('span#following_tip').text("Loaded your saved follow list...");
@@ -50,11 +52,11 @@ $(function() {
 // Load the following list in the sidebar
 //
 
-var loadFollowing = function() {
+loadFollowing = function() {
   var $followingList = $('ul#following');
   $followingList.empty();
   _(store.get("following")).each(function(publisher) {
-    $followingList.append('<li><a href="/s/' + slugLookup[publisher["id"]] + '">' + publisher["name"] + '</a><a class="delete" href="#" data-id="' + publisher["id"] + '">Delete</a><div class="clear"></div></li>');
+    $followingList.append('<li><a href="/s/' + slugLookup[publisher.id] + '">' + publisher.name + '</a><a class="delete" href="#" data-id="' + publisher.id + '">Delete</a><div class="clear"></div></li>');
   });
 
   // Enable removal from following list
@@ -67,7 +69,7 @@ var loadFollowing = function() {
   $('ul#following li a.delete').click(function() {
     var clicked = $(this);
     var updatedList = _(store.get("following")).reject(function(publisher) {
-      return (publisher["id"] == clicked.data('id'));
+      return (publisher.id == clicked.data('id'));
     });
     store.set("following", updatedList);
     // TODO: Send a message to the websocket if logged in
@@ -78,7 +80,7 @@ var loadFollowing = function() {
 //
 // Grab follow list and recent activities from local storage
 //
-var loadStored = function() {
+loadStored = function() {
 
   var streamColumn = $("div#rtColumn_content");
   var mostRecentActivity = { '_id': 0 };
@@ -107,7 +109,7 @@ var loadStored = function() {
 //
 // Load activity with comments
 //
-var loadActivity = function() {
+loadActivity = function() {
   var streamColumn = $("div#rtColumn_content");
 
   var memberLookup = {};
@@ -115,15 +117,14 @@ var loadActivity = function() {
     memberLookup[tuple[0]] = { "name" : tuple[1], "bioguide_id" : tuple[2] };
   });
 
-  publisherId = determinePublisher(activity["publisher_ids"]);
-  activity["name"] = memberLookup[publisherId]["name"];
-  activity["bioguide_id"] = memberLookup[publisherId]["bioguide_id"];
-  activity["source_slug"] = slugLookup[publisherId];
-  //activity["created_at"] = activity["created_at"].substring(0,19) + " UTC";
-  activity["date"] = $.format.date(new Date(activity["created_at"]), "MM.dd.yyyy");
-  activity["time"] = $.format.date(new Date(activity["created_at"]), "hh:mm a");
-  var autolinkExpression = /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g;
-  activity["main_content"] = activity["main_content"].replace(autolinkExpression, '<a href="$1">$1</a> ');
+  publisherId = determinePublisher(activity.publisher_ids);
+  activity.name = memberLookup[publisherId].name;
+  activity.bioguide_id = memberLookup[publisherId].bioguide_id;
+  activity.source_slug = slugLookup[publisherId];
+  activity.date = $.format.date(new Date(activity.created_at), "MM.dd.yyyy");
+  activity.time = $.format.date(new Date(activity.created_at), "hh:mm a");
+  var autolinkExpression = /((http|https|ftp):\/\/[\w?=&.\/\-;#~%\-]+(?![\w\s?&.\/;#~%"=\-]*>))/g;
+  activity.main_content = activity.main_content.replace(autolinkExpression, '<a href="$1">$1</a> ');
   $("#activityTemplate").tmpl(activity).appendTo(streamColumn);
   $("#commentsTemplate").tmpl(activity).appendTo(streamColumn);
 };
@@ -131,12 +132,12 @@ var loadActivity = function() {
 //
 // Backfill the stream as appropriate
 //
-var backfillStream = function(mostRecentActivity) {
+backfillStream = function(mostRecentActivity) {
   var backfillSocket = new WebSocket("ws://" + socketDomain + ":8080/backfill");
-  var recentId = mostRecentActivity['_id'];
+  var recentId = mostRecentActivity._id;
   backfillSocket.onopen = function() {
     var followingIds = _(store.get("following")).map(function(obj) {
-      return obj['id'];
+      return obj.id;
     });
     if (currentPage == "publisher") {
       followingIds = [publisherId];
@@ -154,7 +155,7 @@ var backfillStream = function(mostRecentActivity) {
 //
 // Connect to the live stream
 //
-var liveStream = function() {
+liveStream = function() {
   var liveSocket = new WebSocket("ws://" + socketDomain + ":8080/live");
   liveSocket.onmessage = function(payload) {
     addToStream(JSON.parse(payload.data).reverse());
@@ -164,7 +165,7 @@ var liveStream = function() {
 //
 // Add activities to the in-memory queue
 //
-var addToStream = function(activities) {
+addToStream = function(activities) {
   var memberLookup = {};
   _(allMemberIds).each(function(tuple) {
     memberLookup[tuple[0]] = { "name" : tuple[1], "bioguide_id" : tuple[2] };
@@ -173,14 +174,13 @@ var addToStream = function(activities) {
     if (vetActivity(activity)) {
       publisherId = determinePublisher(activity.publisher_ids);
       if (!_.isUndefined(memberLookup[publisherId])) {
-        activity["name"] = memberLookup[publisherId]["name"];
-        activity["bioguide_id"] = memberLookup[publisherId]["bioguide_id"];
-        activity["source_slug"] = slugLookup[publisherId];
-        //activity["created_at"] = activity["created_at"].substring(0,19) + " UTC";
-        activity["date"] = $.format.date(new Date(activity["created_at"]), "MM.dd.yyyy");
-        activity["time"] = $.format.date(new Date(activity["created_at"]), "hh:mm a");
-        var autolinkExpression = /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g;
-        activity["main_content"] = activity["main_content"].replace(autolinkExpression, '<a href="$1">$1</a> ');
+        activity.name = memberLookup[publisherId].name;
+        activity.bioguide_id = memberLookup[publisherId].bioguide_id;
+        activity.source_slug = slugLookup[publisherId];
+        activity.date = $.format.date(new Date(activity.created_at), "MM.dd.yyyy");
+        activity.time = $.format.date(new Date(activity.created_at), "hh:mm a");
+        var autolinkExpression = /((http|https|ftp):\/\/[\w?=&.\/\-;#~%\-]+(?![\w\s?&.\/;#~%"=\-]*>))/g;
+        activity.main_content = activity.main_content.replace(autolinkExpression, '<a href="$1">$1</a> ');
         activityQueue.push(activity);
       }
     }
@@ -193,7 +193,7 @@ var addToStream = function(activities) {
 //
 // Render activities via jQuery templating
 //
-var processQueue = function() {
+processQueue = function() {
   var intervalId = setInterval(function() {
     queueProcessing = true;
     var activity = activityQueue.shift();
@@ -217,9 +217,9 @@ var processQueue = function() {
 //
 // Determine w)ether the activity should be displayed for this user
 //
-var vetActivity = function(activity) {
+vetActivity = function(activity) {
   var followingIds = _(store.get("following")).map(function(publisher) {
-    return publisher["id"];
+    return publisher.id;
   });
   if (currentPage == "publisher") {
     followingIds = [publisherId];
@@ -232,7 +232,7 @@ var vetActivity = function(activity) {
 //
 // Determine the publisher (member of Congress) from publisher list
 //
-var determinePublisher = function(publisherIds) {
+determinePublisher = function(publisherIds) {
   return _(publisherIds).reject(function(publisherId) {
     return _(groupIds).include(publisherId);
   }).shift();
@@ -241,8 +241,8 @@ var determinePublisher = function(publisherIds) {
 //
 // Persist activities already displayed to user into local storage
 //
-var addToRecentActivities = function(activity) {
-  var activitiesKey = "recentActivities"
+addToRecentActivities = function(activity) {
+  var activitiesKey = "recentActivities";
   if (currentPage == "publisher") {
     activitiesKey = publisherSlug + "Activities";
   }
