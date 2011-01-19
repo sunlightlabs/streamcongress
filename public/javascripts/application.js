@@ -1,4 +1,4 @@
-var loadFollowing, loadStored, loadActivity, backfillStream, liveStream, addToStream, processQueue, vetActivity, determinePublisher, addToRecentActivities;
+var loadFollowing, loadStored, loadActivity, backfillStream, addToStream, processQueue, vetActivity, determinePublisher, addToRecentActivities;
 
 $(function() {
 
@@ -133,33 +133,19 @@ loadActivity = function() {
 // Backfill the stream as appropriate
 //
 backfillStream = function(mostRecentActivity) {
-  var backfillSocket = new WebSocket("ws://" + socketDomain + ":8080/backfill");
-  var recentId = mostRecentActivity._id;
-  backfillSocket.onopen = function() {
-    var followingIds = _(store.get("following")).map(function(obj) {
-      return obj.id;
-    });
-    if (currentPage == "publisher") {
-      followingIds = [publisherId];
-    }
-    requestObject = { 'since_id':recentId, 'following_ids':followingIds };
-    backfillSocket.send(JSON.stringify(requestObject));
-  };
-
-  backfillSocket.onmessage = function(payload) {
-    addToStream(JSON.parse(payload.data).reverse());
-    liveStream();
-  };
-};
-
-//
-// Connect to the live stream
-//
-liveStream = function() {
-  var liveSocket = new WebSocket("ws://" + socketDomain + ":8080/live");
-  liveSocket.onmessage = function(payload) {
-    addToStream(JSON.parse(payload.data).reverse());
-  };
+  var sinceId = mostRecentActivity._id;
+  var followingIds = '';
+  _(store.get("following")).map(function(obj) {
+    followingIds = followingIds + obj.id + ',';
+  });
+  if (currentPage == "publisher") {
+    followingIds = publisherId;
+  }
+  var requestURL = '/latest?following_ids=' + followingIds + '&since_id=' + sinceId;
+  $.getJSON(requestURL, function(data) {
+    addToStream(data.reverse());
+    setTimeout(function() {backfillStream(_(store.get('recentActivities')).last());}, 60000);
+  });
 };
 
 //
