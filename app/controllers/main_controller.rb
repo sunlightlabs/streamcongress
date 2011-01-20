@@ -20,7 +20,7 @@ class MainController < ApplicationController
   end
 
   def latest
-    if params[:since_id] == 0
+    if params[:since_id] == "0"
       @activities = Activity.any_in(:publisher_ids => params[:following_ids].split(',')).
                              desc(:_id).
                              limit(20)
