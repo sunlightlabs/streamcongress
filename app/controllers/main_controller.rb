@@ -1,7 +1,7 @@
 class MainController < ApplicationController
 
   before_filter :ensure_signed_in, :only => [:settings, :comment]
-  #before_filter :user_agent_check, :except => [:chrome]
+  before_filter :user_agent_check, :except => [:chrome]
 
   def index
 
@@ -47,7 +47,7 @@ class MainController < ApplicationController
 
   def user_agent_check
     agent = Agent.new request.env["HTTP_USER_AGENT"]
-    redirect_to chrome_path unless agent.name == :Chrome
+    redirect_to chrome_path if agent.name == :IE
   end
 
 end
