@@ -203,8 +203,8 @@
       <div class="postContent">
         <a class="commenterName">${$value.display_name}</a>
         <div class="commentMetaData">
-          <span>${$.format.date(new Date($value.created_at), "MM.dd.yyyy")}</span>
-          <span>${$.format.date(new Date($value.created_at), "hh:mm a")}</span>
+          <span>${$.format.date(new Date(lamestamp($value.created_at)), "MM.dd.yyyy")}</span>
+          <span>${$.format.date(new Date(lamestamp($value.created_at)), "hh:mm a")}</span>
         </div>
         <p>${$value.body}</p>
       </div>
