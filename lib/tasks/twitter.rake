@@ -1,5 +1,28 @@
 require 'twitter'
 
+
+namespace :load do
+  desc "Follow Twitter accounts"
+  task :twitter_accounts do
+
+    keys = YAML.load_file(Rails.root + "config/keys.yml")
+    oauth = Twitter::OAuth.new(keys["twitter"]["consumer_token"], keys["twitter"]["consumer_secret"])
+    oauth.authorize_from_access(keys["twitter"]["access_token"], keys["twitter"]["access_secret"])
+    client = Twitter::Base.new(oauth)
+
+    Publisher.active_members.each do |member|
+      unless member.twitter_id.blank?
+        begin
+          client.friendship_create(member.twitter_id)
+          puts "Followed #{member.twitter_id}"
+        rescue
+          puts "Already following #{member.twitter_id}"
+        end
+      end
+    end
+  end
+end
+
 namespace :fetch do
 
   desc "Load recent tweets"
