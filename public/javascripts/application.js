@@ -1,4 +1,4 @@
-var loadFollowing, loadStored, loadActivity, backfillStream, addToStream, processQueue, vetActivity, determinePublisher, addToRecentActivities;
+var loadFollowing, loadStored, loadActivity, backfillStream, addToStream, processQueue, vetActivity, determinePublisher, addToRecentActivities, lamestamp;
 
 $(function() {
 
@@ -125,8 +125,9 @@ loadActivity = function() {
   activity.name = memberLookup[publisherId].name;
   activity.bioguide_id = memberLookup[publisherId].bioguide_id;
   activity.source_slug = slugLookup[publisherId];
-  activity.date = $.format.date(new Date(activity.created_at), "MM.dd.yyyy");
-  activity.time = $.format.date(new Date(activity.created_at), "hh:mm a");
+  var createdDate = new Date(lamestamp(activity.created_at));
+  activity.date = $.format.date(createdDate, "MM.dd.yyyy");
+  activity.time = $.format.date(createdDate, "hh:mm a");
   var autolinkExpression = /((http|https|ftp):\/\/[\w?=&.\/\-;#~%\-]+(?![\w\s?&.\/;#~%"=\-]*>))/g;
   activity.main_content = activity.main_content.replace(autolinkExpression, '<a href="$1">$1</a> ');
   $("#activityTemplate").tmpl(activity).appendTo(streamColumn);
@@ -167,8 +168,9 @@ addToStream = function(activities) {
         activity.name = memberLookup[publisherId].name;
         activity.bioguide_id = memberLookup[publisherId].bioguide_id;
         activity.source_slug = slugLookup[publisherId];
-        activity.date = $.format.date(new Date(activity.created_at), "MM.dd.yyyy");
-        activity.time = $.format.date(new Date(activity.created_at), "hh:mm a");
+        var createdDate = new Date(lamestamp(activity.created_at));
+        activity.date = $.format.date(createdDate, "MM.dd.yyyy");
+        activity.time = $.format.date(createdDate, "hh:mm a");
         var autolinkExpression = /((http|https|ftp):\/\/[\w?=&.\/\-;#~%\-]+(?![\w\s?&.\/;#~%"=\-]*>))/g;
         activity.main_content = activity.main_content.replace(autolinkExpression, '<a href="$1">$1</a> ');
         activityQueue.push(activity);
@@ -247,3 +249,10 @@ addToRecentActivities = function(activity) {
   }
   store.set(activitiesKey, recentActivities);
 };
+
+//
+// Convert an ISO 8601 timestamp to a lame timestamp supported in older browsers
+//
+lamestamp = function(str) {
+  return str.substr(5,2) + "/" + str.substr(8,2) + "/" + str.substr(0,4) + " " + str.substr(11,8) + " " + str.substr(19,3) + str.substr(23,2);
+}
