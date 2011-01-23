@@ -1,4 +1,5 @@
 var loadFollowing, loadStored, loadActivity, backfillStream, addToStream, processQueue, vetActivity, determinePublisher, addToRecentActivities, lamestamp;
+var backfilled = false;
 
 $(function() {
 
@@ -186,6 +187,11 @@ addToStream = function(activities) {
 // Render activities via jQuery templating
 //
 processQueue = function() {
+  var rate = 3500;
+  if (backfilled === false) {
+    backfilled = true;
+    rate = 1;
+  }
   var intervalId = setInterval(function() {
     queueProcessing = true;
     var activity = activityQueue.shift();
@@ -203,7 +209,7 @@ processQueue = function() {
       clearInterval(intervalId);
       queueProcessing = false;
     }
-  }, 3500);
+  }, rate);
 };
 
 //
@@ -255,4 +261,4 @@ addToRecentActivities = function(activity) {
 //
 lamestamp = function(str) {
   return str.substr(5,2) + "/" + str.substr(8,2) + "/" + str.substr(0,4) + " " + str.substr(11,8) + " " + str.substr(19,3) + str.substr(23,2);
-}
+};
