@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <%= csrf_meta_tag %>
   <meta name="description" content="A comprehensive ticker to track online activity coming from Congress in real time." />
@@ -135,7 +136,6 @@
   <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js'></script>
   <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
   <script src='http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js'></script>
-
   <script id="activityTemplate" type="text/x-jquery-tmpl">
     <article>
       <img src="http://assets.sunlightfoundation.com/moc/100x125/${bioguide_id}.jpg" width="59px" />
@@ -215,6 +215,26 @@
     {{/if}}
   </script>
   <% end %>
+
+  <script type="text/javascript">
+  var _sf_async_config={uid:14977,domain:"streamcongress.com"};
+  (function(){
+    function loadChartbeat() {
+      window._sf_endpt=(new Date()).getTime();
+      var e = document.createElement('script');
+      e.setAttribute('language', 'javascript');
+      e.setAttribute('type', 'text/javascript');
+      e.setAttribute('src',
+         (("https:" == document.location.protocol) ? "https://a248.e.akamai.net/chartbeat.download.akamai.com/102508/" : "http://static.chartbeat.com/") +
+         "js/chartbeat.js");
+      document.body.appendChild(e);
+    }
+    var oldonload = window.onload;
+    window.onload = (typeof window.onload != 'function') ?
+       loadChartbeat : function() { oldonload(); loadChartbeat(); };
+  })();
+
+  </script>
 
   <%= javascript_include_tag 'jquery.autocomplete.min', 'jquery.dateFormat', 'store', 'application', 'geolocation', 'underscore.min' %>
 </body>
