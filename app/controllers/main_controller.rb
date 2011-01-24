@@ -27,7 +27,8 @@ class MainController < ApplicationController
     else
       @activities = Activity.where(:_id.gt => BSON.ObjectId(params[:since_id])).
                              any_in(:publisher_ids => params[:following_ids].split(',')).
-                             desc(:_id)
+                             desc(:_id).
+                             limit(100)
     end
     render :json => @activities
   end
