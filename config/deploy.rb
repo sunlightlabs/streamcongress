@@ -2,7 +2,7 @@ set :environment, (ENV['target'] || 'staging')
 
 set :user, 'streamcongress'
 set :application, user
-set :deploy_to, "/home/streamcongress/www"
+set :deploy_to, "/projects/streamcongress/www"
 
 if environment == 'production'
   set :domain, "streamcongress.com"
