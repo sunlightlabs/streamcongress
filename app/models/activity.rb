@@ -8,7 +8,7 @@ class Activity
   field :source_name
   field :source_id
   field :source_url
-  
+
   embeds_many :comments
 
   index :source_id
