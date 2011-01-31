@@ -1,4 +1,4 @@
-var loadFollowing, loadStored, loadActivity, backfillStream, addToStream, processQueue, vetActivity, determinePublisher, addToRecentActivities, lamestamp;
+var loadFollowing, loadStored, loadActivity, backfillStream, addToStream, processQueue, vetActivity, determinePublisher, addToRecentActivities, lamestamp, toTitleCase;
 var backfilled = false;
 
 $(function() {
@@ -164,18 +164,24 @@ addToStream = function(activities) {
   });
   _(activities).each(function(activity) {
     if (vetActivity(activity)) {
-      publisherId = determinePublisher(activity.publisher_ids);
+      if (activity.source_name == "house floor" || activity.source_name == "senate floor") {
+        publisherId = _.last(activity.publisher_ids);
+      } else {
+        publisherId = determinePublisher(activity.publisher_ids);
+      }
       if (!_.isUndefined(memberLookup[publisherId])) {
         activity.name = memberLookup[publisherId].name;
         activity.bioguide_id = memberLookup[publisherId].bioguide_id;
-        activity.source_slug = slugLookup[publisherId];
-        var createdDate = new Date(lamestamp(activity.created_at));
-        activity.date = $.format.date(createdDate, "MM.dd.yyyy");
-        activity.time = $.format.date(createdDate, "hh:mm a");
-        var autolinkExpression = /((http|https|ftp):\/\/[\w?=&.\/\-;#~%\-]+(?![\w\s?&.\/;#~%"=\-]*>))/g;
-        activity.main_content = activity.main_content.replace(autolinkExpression, '<a href="$1">$1</a> ');
-        activityQueue.push(activity);
+      } else {
+        activity.name = toTitleCase(activity.source_name);
       }
+      activity.source_slug = slugLookup[publisherId];
+      var createdDate = new Date(lamestamp(activity.created_at));
+      activity.date = $.format.date(createdDate, "MM.dd.yyyy");
+      activity.time = $.format.date(createdDate, "hh:mm a");
+      var autolinkExpression = /((http|https|ftp):\/\/[\w?=&.\/\-;#~%\-]+(?![\w\s?&.\/;#~%"=\-]*>))/g;
+      activity.main_content = activity.main_content.replace(autolinkExpression, '<a href="$1">$1</a> ');
+      activityQueue.push(activity);
     }
   });
   if (activityQueue.length > 0 && !queueProcessing) {
@@ -213,7 +219,7 @@ processQueue = function() {
 };
 
 //
-// Determine w)ether the activity should be displayed for this user
+// Determine whether the activity should be displayed for this user
 //
 vetActivity = function(activity) {
   var followingIds = _(store.get("following")).map(function(publisher) {
@@ -262,3 +268,11 @@ addToRecentActivities = function(activity) {
 lamestamp = function(str) {
   return str.substr(5,2) + "/" + str.substr(8,2) + "/" + str.substr(0,4) + " " + str.substr(11,8) + " " + str.substr(19,3) + str.substr(23,2);
 };
+
+//
+// Convert to Title Case
+//
+toTitleCase = function(str) {
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+};
+

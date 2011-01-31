@@ -110,7 +110,7 @@
     var currentPage = '<%= yield :current_page %>';
     var signedIn = <%= signed_in? %>;
     var userName = '<%= current_user.display_name if signed_in? %>';
-    var sunlightKey = 'eb9a0cebe6e940cf827ca2592b11fc3f'
+    var sunlightKey = '4eb10599f1c947868810783a5f4fd50a'
     var socketDomain = '<%= Rails.env == "production" ? "streamcongress.com" : "localhost" %>';
     var defaultFollows = <%= default_follows.inspect.html_safe %>;
     var groupIds = defaultFollows;
@@ -139,7 +139,13 @@
   <script src='http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js'></script>
   <script id="activityTemplate" type="text/x-jquery-tmpl">
     <article>
-      <img src="http://assets.sunlightfoundation.com/moc/100x125/${bioguide_id}.jpg" width="59px" />
+      {{if source_name == "house floor"}}
+        <img src="/images/house_profile.jpg" width="59px" />
+      {{else source_name == "senate floor"}}
+        <img src="/images/senate_profile.jpg" width="59px" />
+      {{else}}
+        <img src="http://assets.sunlightfoundation.com/moc/100x125/${bioguide_id}.jpg" width="59px" />
+      {{/if}}
       <div class="articleContent">
         <div class="date">
             <a href="/a/${_id}">${date}</a>
@@ -155,6 +161,12 @@
         <h3>${name} posted a video:</h3>
         <object width="300" height="250"><param name="movie" value="http://www.youtube.com/v/${source_id}?fs=1&amp;hl=en_US&amp;rel=0&amp;hd=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/${source_id}?fs=1&amp;hl=en_US&amp;rel=0&amp;hd=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="300" height="250"></embed></object><br />
         <p>${secondary_content}</p>
+        {{else source_name == "house floor"}}
+        <h3>Update from the House Floor</h3>
+        <p>${main_content}</p>
+        {{else source_name == "senate floor"}}
+        <h3>Update from the Senate Floor</h3>
+        <p>${main_content}</p>
         {{/if}}
         <ul>
           {{if comments}}
