@@ -107,6 +107,7 @@ textarea { height: 200px;}
 #rtColumn #sunlightSignUp { width: auto; display: block; margin-left: 120px;}
 
 article { border-bottom: 1px dotted #ddd9d9; margin-bottom: 30px; padding-bottom: 30px; display: block;}
+article#geolocationPrompt { border:none; }
 article li { float: left; margin-right: 15px;}
 .articleContent { float: left; width: 485px;}
 

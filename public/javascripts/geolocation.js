@@ -5,7 +5,7 @@ var gotLocation = function(loc) {
     memberLookup[tuple[0]] = { "name" : tuple[1], "id" : tuple[2] };
   });
 
-  var geo_url = 'http://nominatim.openstreetmap.org/reverse?format=json&lat=' + loc.coords.latitude + '&lon='+ loc.coords.longitude + '&json_callback=?'
+  var geo_url = 'http://nominatim.openstreetmap.org/reverse?format=json&lat=' + loc.coords.latitude + '&lon='+ loc.coords.longitude + '&json_callback=?';
   $.getJSON(geo_url, function(data) {
     var address = data.address;
     $('span#following_tip').text("Current city: " + address.city);
@@ -32,6 +32,13 @@ var gotLocation = function(loc) {
       $('article#geolocationPrompt').hide();
     }
   });
+};
 
-}
+var noLocation = function(errorCode) {
+  loadFollowing();
+  if (currentPage == "home") {
+    loadStored();
+  }
+  $('article#geolocationPrompt').hide();
+};
 

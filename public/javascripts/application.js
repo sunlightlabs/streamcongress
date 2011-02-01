@@ -32,7 +32,7 @@ $(function() {
     });
     store.set("following", following);
 
-    navigator.geolocation.getCurrentPosition(gotLocation);
+    navigator.geolocation.getCurrentPosition(gotLocation, noLocation);
 
   } else {
     // clean out following list
