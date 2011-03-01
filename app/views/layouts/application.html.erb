@@ -33,10 +33,15 @@
       <div id="ltColumn">
         <div id="congressSessions">
           <dl>
-            <dt class="out">House</dt>
-            <dd>Out of Session</dd>
-            <dt class="in">Senate</dt>
-            <dd>In Session</dd>
+            <% ["House", "Senate"].each do |chamber| -%>
+              <% if in_session?(chamber) %>
+                <dt class="in"><%= chamber %></dt>
+                <dd>In Session</dd>
+              <% else %>
+                <dt class="out"><%= chamber %></dt>
+                <dd>Out of Session</dd>
+              <% end %>
+            <% end -%>
           </dl>
         </div>
         <div class="module">
