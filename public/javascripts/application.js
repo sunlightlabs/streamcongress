@@ -1,4 +1,4 @@
-var loadFollowing, loadStored, loadActivity, backfillStream, addToStream, processQueue, vetActivity, determinePublisher, addToRecentActivities, lamestamp, toTitleCase;
+var loadFollowing, loadStored, loadActivity, backfillStream, addToStream, processQueue, vetActivity, determinePublisher, addToRecentActivities, lamestamp, toTitleCase, openEventSource;
 var backfilled = false;
 
 $(function() {
@@ -6,7 +6,6 @@ $(function() {
   if (_.isUndefined(store.get('dbVersion'))) {
     store.set('dbVersion', 1);
   }
-
   $("#activityTemplate").template("activity");
 
   // Set up the legislator search form
@@ -107,7 +106,6 @@ loadStored = function() {
       mostRecentActivity = activity;
     });
   }
-
   backfillStream(mostRecentActivity);
 };
 
@@ -150,7 +148,15 @@ backfillStream = function(mostRecentActivity) {
   var requestURL = '/latest?following_ids=' + followingIds + '&since_id=' + sinceId;
   $.getJSON(requestURL, function(data) {
     addToStream(data.reverse());
-    setTimeout(function() {backfillStream(_(store.get('recentActivities')).last());}, 60000);
+    setTimeout(function() {
+      var lastId = _(store.get('recentActivities')).last()._id;
+      var source = new EventSource('/live?following_ids=' + followingIds + '&since_id=' + lastId);
+      source.onmessage = function(event) {
+        var activities = $.parseJSON(event.data);
+        console.log(activities);
+        addToStream(activities.reverse());
+      };
+    }, 500);
   });
 };
 

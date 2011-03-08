@@ -31,7 +31,7 @@ class Publisher
   index :in_office
   index :minute_id
 
-  referenced_in :activity
+  references_many :activities
 
   validates_presence_of :name
   validates_presence_of :publisher_type

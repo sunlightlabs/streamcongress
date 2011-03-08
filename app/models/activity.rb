@@ -16,8 +16,8 @@ class Activity
   index :created_at
   index :updated_at
 
-  references_many :publishers, :stored_as => :array, :index => true
-
+  #references_many :publishers, :stored_as => :array, :index => true
+  references_and_referenced_in_many :publishers, :index => true
   validates_presence_of :main_content
   validates_presence_of :source_name
   validates_presence_of :source_id
