@@ -153,7 +153,6 @@ backfillStream = function(mostRecentActivity) {
       var source = new EventSource('/live?following_ids=' + followingIds + '&since_id=' + lastId);
       source.onmessage = function(event) {
         var activities = $.parseJSON(event.data);
-        console.log(activities);
         addToStream(activities.reverse());
       };
     }, 500);

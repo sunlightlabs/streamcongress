@@ -20,8 +20,6 @@ class LiveEvents < Cramp::Action
 
   def latest
     @latest_id = BSON.ObjectId(params[:since_id]) if @latest_id.nil?
-    puts @latest_id
-    puts params[:following_ids]
     new_activities = Activity.where(:_id.gt => @latest_id).
                               any_in(:publisher_ids => params[:following_ids].split(',')).
                               desc(:_id)
