@@ -155,7 +155,7 @@ backfillStream = function(mostRecentActivity) {
         var activities = $.parseJSON(event.data);
         addToStream(activities.reverse());
       };
-    }, 500);
+    }, 15000);
   });
 };
 
