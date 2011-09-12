@@ -2,7 +2,7 @@ require 'monster_mash'
 require 'hashie'
 
 class RealTimeCongress < MonsterMash::Base
-  BASE = 'http://api.realtimecongress.com/api/v1/'
+  BASE = 'http://api.realtimecongress.org/api/v1/'
   APIKEY = '4eb10599f1c947868810783a5f4fd50a'
 
   defaults do
