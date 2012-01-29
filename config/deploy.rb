@@ -5,7 +5,7 @@ set :application, user
 set :deploy_to, "/projects/streamcongress/www"
 
 if environment == 'production'
-  set :domain, "streamcongress.com"
+  set :domain, "ec2-107-20-76-29.compute-1.amazonaws.com"
 else
   set :domain, "staging.streamcongress.com"
 end
