@@ -12,7 +12,7 @@ end
 namespace :fetch do
 
   desc "Load recent news articles"
-  task :news do
+  task :news => :environment do
 
     hours = (0..23).to_a
     hours = [5,7,9,10,12,14,15,17,19] if Rails.env == 'production'

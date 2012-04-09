@@ -20,7 +20,7 @@ end
 namespace :fetch do
 
   desc "Load floor updates"
-  task :floor_updates do
+  task :floor_updates => :environment do
 
     house_floor = Publisher.first(:conditions => {:name => "House Floor"})
     senate_floor = Publisher.first(:conditions => {:name => "Senate Floor"})

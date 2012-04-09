@@ -12,7 +12,7 @@ end
 namespace :fetch do
 
   desc "Load recent YouTube videos"
-  task :videos do
+  task :videos => :environment do
 
     Publisher.active_members.where(:minute_id => Time.now.min).each do |member|
       if member.youtube_id

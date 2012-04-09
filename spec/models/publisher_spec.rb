@@ -11,6 +11,6 @@ describe Publisher do
 
   it { should have_fields(:title, :party, :bioguide_id, :govtrack_id, :twitter_id, :youtube_id, :minute_id)}
 
-  it { should be_referenced_in(:activity) }
+  it { should have_many(:activities) }
 
 end

@@ -3,6 +3,7 @@ require 'rake'
 require 'mongoid'
 Dir.glob(Rails.root + 'app/models/*.rb').each { |f| require f }
 
+YAML::ENGINE.yamler= 'syck'
 mongoid_conf = YAML::load_file(Rails.root.join('config/mongoid.yml'))[Rails.env]
 
 Mongoid.configure do |config|

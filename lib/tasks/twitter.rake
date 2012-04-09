@@ -26,7 +26,7 @@ end
 namespace :fetch do
 
   desc "Load recent tweets"
-  task :tweets do
+  task :tweets => :environment do
 
     keys = YAML.load_file(Rails.root + "config/keys.yml")
     oauth = Twitter::OAuth.new(keys["twitter"]["consumer_token"], keys["twitter"]["consumer_secret"])
