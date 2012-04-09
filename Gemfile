@@ -4,8 +4,8 @@ gem 'rails', '~> 3.0'
 
 gem "fastercsv"
 gem "json"
-gem "bson_ext"
-gem "mongoid"
+gem "bson_ext", "~>1.2.4"
+gem "mongoid", "~> 2.0.0"
 gem "twitter", "~> 0.9.0"
 gem "httparty"
 gem "hashie", "~> 0.4.0"
