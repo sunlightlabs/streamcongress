@@ -4,7 +4,7 @@ require 'mongoid'
 Dir.glob(Rails.root + 'app/models/*.rb').each { |f| require f }
 
 # Kill me
-YAML::ENGINE.yamler= 'syck' rescue nil
+(YAML::ENGINE.yamler = 'syck') rescue nil
 mongoid_conf = YAML::load_file(Rails.root.join('config/mongoid.yml'))[Rails.env]
 
 Mongoid.configure do |config|
